@@ -34,6 +34,23 @@ public class BlockInstanciator : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.RightArrow))
             disp = 1;
 
+        int rot = 0;
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            rot = -1;
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            rot = 1;
+
+        if (rot != 0)
+        {
+            transform.Rotate(0, 0, rot * 90);
+            blockGroup.SynchronizePosition();
+            if (!blockGroup.IsValidPosition(matrixPosition))
+            {
+                transform.Rotate(0, 0, -rot * 90);
+                blockGroup.SynchronizePosition();
+            }
+        }
+
         if (disp != 0)
         {
             Vector2Int newPos = matrixPosition + new Vector2Int(disp, 0);
@@ -59,7 +76,7 @@ public class BlockInstanciator : MonoBehaviour
     private void Spawn(Vector2Int _matrixPosition)
     {
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
-        Instantiate(blockGroupPrefab, position, Quaternion.identity);
+        Instantiate(blockGroupPrefab, position, transform.rotation);
     }
 
     public Vector2Int? GetSpawnPosition()
