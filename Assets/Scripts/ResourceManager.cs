@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    public event Action onGoldChange;
 
     [field: SerializeField]
     public int goldAmount { get; private set; } = 100;
+    public int peopleAmount { get; private set; } = 0;
+    
+
+    public event Action onGoldChange;
+    public event Action onPeopleChange;
 
     public void AddGold(int goldAmount)
     {
@@ -16,6 +20,15 @@ public class ResourceManager : Singleton<ResourceManager>
         if (onGoldChange != null)
         {
             onGoldChange();
+        }
+    }
+
+    public void AddPeople(int peopleAmount)
+    {
+        this.peopleAmount+= peopleAmount;
+        if (onPeopleChange!= null)
+        {
+            onPeopleChange();
         }
     }
 }

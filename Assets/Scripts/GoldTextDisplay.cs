@@ -21,5 +21,6 @@ public class GoldTextDisplay : MonoBehaviour
     public void Refresh()
     {
         int goldAmount = ResourceManager.instance.goldAmount;
+        goldText.text = $"Gold: {goldAmount}";
     }
 }
