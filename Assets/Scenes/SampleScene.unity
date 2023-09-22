@@ -631,6 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1440337143}
   - component: {fileID: 1440337142}
+  - component: {fileID: 1440337144}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -667,6 +668,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440337144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440337141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab4d498cd1290d4d803bba14304526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <goldAmount>k__BackingField: 100
 --- !u!1 &1846301530
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1846301531}
   - component: {fileID: 1846301533}
+  - component: {fileID: 1846301534}
   - component: {fileID: 1846301532}
   m_Layer: 5
   m_Name: GoldText
@@ -802,3 +817,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846301530}
   m_CullTransparentMesh: 1
+--- !u!114 &1846301534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846301530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00d8341979d98a43bbe8511be6a4e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldText: {fileID: 1846301532}

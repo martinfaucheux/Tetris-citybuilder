@@ -7,10 +7,11 @@ using UnityEngine;
 
 public class BlockGroup : MonoBehaviour
 {
-    public MatrixCollider[] childColliders;
-
-    public Vector2Int _matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
-    public CollisionMatrix _matrix{ get => CollisionMatrix.instance; }
+    public int cost = 10;
+    
+    MatrixCollider[] childColliders;
+    CollisionMatrix _matrix{ get => CollisionMatrix.instance; }
+    Vector2Int _matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
 
     void Start()
     {

@@ -62,7 +62,10 @@ public class BlockInstanciator : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (
+            Input.GetKeyDown(KeyCode.Space)
+            && ResourceManager.instance.goldAmount > blockGroup.cost
+            )
         {
             Vector2Int? spawnPos = GetSpawnPosition();
             if (spawnPos == null) {
@@ -77,6 +80,8 @@ public class BlockInstanciator : MonoBehaviour
     {
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
         Instantiate(blockGroupPrefab, position, transform.rotation);
+        ResourceManager.instance.AddGold(-blockGroup.cost);
+        Debug.LogError(blockGroup.cost);
     }
 
     public Vector2Int? GetSpawnPosition()
