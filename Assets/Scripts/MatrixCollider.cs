@@ -12,13 +12,18 @@ public class MatrixCollider : MonoBehaviour
     void Start()
     {
         _collisionMatrix = CollisionMatrix.instance;
-        matrixPosition = _collisionMatrix.GetMatrixPos(this.transform);
+        SynchronizePosition();
         _collisionMatrix.AddCollider(this);
     }
 
     private void OnDestroy()
     {
         Unregister();
+    }
+
+    public void SynchronizePosition()
+    {
+        matrixPosition = _collisionMatrix.GetMatrixPos(this.transform);
     }
 
     public Vector3 GetRealPos()

@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class BlockInstanciator : MonoBehaviour
 {
-    public GameObject blockPrefab;
-
+    public GameObject blockGroupPrefab;
     public float moveCooldown = 0.1f;
+    public int maxIteriation = 10000;
+
+    private BlockGroup blockGroup;
+    
+
     float _lastMoveTime = 0f;
 
     public Vector2Int matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject ghostObject = Instantiate(blockGroupPrefab, transform.position, Quaternion.identity, transform);
+        blockGroup = ghostObject.GetComponent<BlockGroup>();
     }
 
     // Update is called once per frame
@@ -33,9 +37,10 @@ public class BlockInstanciator : MonoBehaviour
         if (disp != 0)
         {
             Vector2Int newPos = matrixPosition + new Vector2Int(disp, 0);
-            if (Mathf.Abs(newPos.x) <= CollisionMatrix.instance.maxX)
+            if (blockGroup.IsValidPosition(newPos))
             {
                 transform.position = CollisionMatrix.instance.GetRealWorldPosition(newPos);
+                blockGroup.SynchronizePosition();
                 _lastMoveTime = Time.time;
             }
         }
@@ -43,8 +48,9 @@ public class BlockInstanciator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2Int? spawnPos = GetSpawnPosition();
-            if (spawnPos != null)
-            {
+            if (spawnPos == null) {
+                Debug.LogError("Max iteration reached");
+            } else {
                 Spawn((Vector2Int)spawnPos);
             }
         }   
@@ -53,22 +59,18 @@ public class BlockInstanciator : MonoBehaviour
     private void Spawn(Vector2Int _matrixPosition)
     {
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
-        Instantiate(blockPrefab, position, Quaternion.identity);
+        Instantiate(blockGroupPrefab, position, Quaternion.identity);
     }
 
     public Vector2Int? GetSpawnPosition()
     {
-
-        for (int y = 0; y< matrixPosition.y; y++)
+        for (int y = 0; y < maxIteriation; y ++ )
         {
-            Vector2Int spawnPos = new Vector2Int(matrixPosition.x, y);
-            if (
-                CollisionMatrix.instance.IsValidPosition(spawnPos)
-                && !CollisionMatrix.instance.GetObjectsAtPosition(spawnPos).Any()
-            )
-            {
-                return spawnPos;   
-            }
+            Vector2Int basePosition = new Vector2Int(matrixPosition.x, y);
+            if (!blockGroup.IsValidPosition(basePosition))
+                continue;
+
+            return basePosition;
         }
         return null;
     }

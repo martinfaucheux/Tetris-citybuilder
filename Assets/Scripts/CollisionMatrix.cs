@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CollisionMatrix : Singleton<CollisionMatrix>
@@ -23,11 +24,16 @@ public class CollisionMatrix : Singleton<CollisionMatrix>
 
     public List<GameObject> GetObjectsAtPosition(Vector2Int matrixPosition)
     {
-        List<GameObject> result = new List<GameObject>();
+        return GetCollidersAtPosition(matrixPosition).Select(col => col.gameObject).ToList();
+    }
+
+    public List<MatrixCollider> GetCollidersAtPosition(Vector2Int matrixPosition)
+    {
+        List<MatrixCollider> result = new List<MatrixCollider>();
         foreach (MatrixCollider collider in colliderList)
         {
             if (collider.matrixPosition == matrixPosition)
-                result.Add(collider.gameObject);
+                result.Add(collider);
         }
         return result;
     }
