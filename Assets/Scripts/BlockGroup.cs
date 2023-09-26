@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class BlockGroup : MonoBehaviour
 {
-    public Price cost { get => blocks.Select(b => b.cost).Aggregate((x,y) => x+y); }
+    public ResourceGroup cost { get => blocks.Select(b => b.cost).Aggregate((x,y) => x+y); }
     
     Block[] blocks;
     MatrixCollider[] childColliders;
@@ -62,5 +62,11 @@ public class BlockGroup : MonoBehaviour
     {
         foreach(MatrixCollider childCollider in childColliders)
             childCollider.SynchronizePosition();
+    }
+
+    public void Place()
+    {
+        foreach(Block block in blocks)
+            block.Place();
     }
 }

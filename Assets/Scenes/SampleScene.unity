@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 233360320}
   - component: {fileID: 233360322}
   - component: {fileID: 233360321}
+  - component: {fileID: 233360323}
   m_Layer: 5
   m_Name: CounterContainer
   m_TagString: Untagged
@@ -347,6 +348,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233360319}
   m_CullTransparentMesh: 1
+--- !u!114 &233360323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233360319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf74ffc1504b9944e9b65832dcd5ea3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldText: {fileID: 1846301532}
+  foodText: {fileID: 231387298}
+  peopleText: {fileID: 801288613}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +1006,7 @@ GameObject:
   - component: {fileID: 1440337143}
   - component: {fileID: 1440337142}
   - component: {fileID: 1440337144}
+  - component: {fileID: 1440337145}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1038,9 +1055,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab4d498cd1290d4d803bba14304526d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <goldAmount>k__BackingField: 100
-  <foodAmount>k__BackingField: 50
-  <peopleAmount>k__BackingField: 10
+  <resources>k__BackingField:
+    gold: 0
+    food: 0
+    people: 0
+  <initialResources>k__BackingField:
+    gold: 100
+    food: 10
+    people: 10
+--- !u!114 &1440337145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440337141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb3449c8fec2c643ac3b0e0bdd33eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTurnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1440337144}
+        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
+        m_MethodName: Calculate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 233360323}
+        m_TargetAssemblyTypeName: ResourceCounterUI, Assembly-CSharp
+        m_MethodName: Refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1846301530
 GameObject:
   m_ObjectHideFlags: 0

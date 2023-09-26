@@ -5,8 +5,6 @@ using UnityEngine;
 public class FieldBlock : Block
 {
     public int foodAmount = 5;
-    public override void OnPlace()
-    {
-        ResourceManager.instance.AddFood(foodAmount);
-    }
+    public override ResourceGroup GetProduct() => new ResourceGroup(food: foodAmount);
+
 }

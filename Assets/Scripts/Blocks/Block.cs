@@ -4,8 +4,14 @@ using UnityEngine;
 
 public abstract class Block : MonoBehaviour
 {
-    public Price cost;
+    public ResourceGroup cost;
     public MatrixCollider matrixCollider;
 
+    public virtual ResourceGroup GetProduct() => new ResourceGroup();
+
+    public void Place() => BlockManager.instance.Register(this);
+
     public virtual void OnPlace() { }
+
+
 }
