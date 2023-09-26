@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HouseBlock : Block
+public class FieldBlock : Block
 {
-    int peopleAmount = 3;
+    int foodAmount = 5;
     public override void OnPlace()
     {
-        ResourceManager.instance.AddPeople(peopleAmount);
+        ResourceManager.instance.AddFood(foodAmount);
     }
 }

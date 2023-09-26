@@ -8,7 +8,9 @@ public class ResourceManager : Singleton<ResourceManager>
 
     [field: SerializeField]
     public int goldAmount { get; private set; } = 100;
+    [field: SerializeField]
     public int foodAmount { get; private set; } = 0;
+    [field: SerializeField]
     public int peopleAmount { get; private set; } = 0;
     
 
@@ -41,5 +43,17 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             onPeopleChange();
         }
+    }
+
+    public bool CanAfford(Price price)
+    {
+        return (goldAmount >= price.gold && foodAmount >= price.food && peopleAmount >= price.people);
+    }
+
+    public void Add(Price price)
+    {
+        AddGold(price.gold);
+        AddFood(price.food);
+        AddPeople(price.people);
     }
 }

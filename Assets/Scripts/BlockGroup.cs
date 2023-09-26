@@ -7,15 +7,17 @@ using UnityEngine;
 
 public class BlockGroup : MonoBehaviour
 {
-    public int cost = 10;
+    public Price cost { get => blocks.Select(b => b.cost).Aggregate((x,y) => x+y); }
     
+    Block[] blocks;
     MatrixCollider[] childColliders;
     CollisionMatrix _matrix{ get => CollisionMatrix.instance; }
     Vector2Int _matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
 
     void Start()
     {
-        childColliders = GetComponentsInChildren<MatrixCollider>(true);
+        blocks = GetComponentsInChildren<Block>(true);
+        childColliders = blocks.Select(b => b.matrixCollider).ToArray();
     }
 
     public Vector2Int GetLowestPosition(int x)
