@@ -14,7 +14,7 @@ public class BlockGroup : MonoBehaviour
     CollisionMatrix _matrix{ get => CollisionMatrix.instance; }
     Vector2Int _matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
 
-    void Start()
+    void Awake()
     {
         blocks = GetComponentsInChildren<Block>(true);
         childColliders = blocks.Select(b => b.matrixCollider).ToArray();
