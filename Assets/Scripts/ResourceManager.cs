@@ -7,27 +7,24 @@ public class ResourceManager : Singleton<ResourceManager>
 {
 
     [field: SerializeField]
-    public ResourceGroup resources { get; private set; }
+    [Tooltip("Resources recalculated by each block on each turn")]
+    public ResourceGroup staticResources { get; private set; }
 
     [field: SerializeField]
-    public ResourceGroup initialResources { get; private set; }
+    [Tooltip("Resources kept between turns")]
+    public ResourceGroup permanentResources { get; private set; }
 
-    private void Start()
+    public bool CanAfford(ResourceGroup cost) => (staticResources - cost).isPositive();
+
+    public void Add(ResourceGroup resources) => permanentResources += resources;
+
+    public void CalculateCurrentResources()
     {
-        Calculate();
-    }
-
-    public bool CanAfford(ResourceGroup cost) => (resources - cost).isPositive();
-
-    public void Add(ResourceGroup resources) => this.resources += resources;
-
-    public void Calculate()
-    {
-        resources = new ResourceGroup(initialResources);
+        staticResources = new ResourceGroup(permanentResources);
         foreach (Block block in BlockManager.instance.blockList)
         {
-            resources += block.GetProduct();
-            resources -= block.cost;
+            staticResources += block.GetProduct();
+            staticResources -= block.cost;
         }
     }
 }

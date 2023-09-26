@@ -6,7 +6,8 @@ using UnityEngine.Events;
 
 public class TurnManager : Singleton<TurnManager>
 {
-    int turnCount = 0;
+    [field: SerializeField]
+    public int turnCount { get; private set; } = 0;
 
     public UnityEvent onTurnStart;
 
@@ -21,9 +22,6 @@ public class TurnManager : Singleton<TurnManager>
     {
         turnCount++;
         onTurnStart?.Invoke();
-
-        // foreach block, compute cost and product
-        // update UI
     }
 
     public void EndTurn()

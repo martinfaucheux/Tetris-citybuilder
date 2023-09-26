@@ -15,4 +15,11 @@ public class BlockManager : Singleton<BlockManager>
 
     public void Register(Block block) => blockList.Add(block);
     public void Unregister(Block block) => blockList.Remove(block);
+    public void AddPermanentProduct()
+    {
+        foreach (Block block in blockList)
+        {
+            ResourceManager.instance.Add(block.GetPermanentProduct());
+        }
+    }
 }

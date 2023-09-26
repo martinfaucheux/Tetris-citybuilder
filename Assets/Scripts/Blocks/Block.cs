@@ -8,10 +8,12 @@ public abstract class Block : MonoBehaviour
     public MatrixCollider matrixCollider;
 
     public virtual ResourceGroup GetProduct() => new ResourceGroup();
+    public virtual ResourceGroup GetPermanentProduct() => new ResourceGroup();
 
     public void Place() => BlockManager.instance.Register(this);
 
     public virtual void OnPlace() { }
+
 
 
 }

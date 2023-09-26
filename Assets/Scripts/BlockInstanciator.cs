@@ -79,7 +79,6 @@ public class BlockInstanciator : MonoBehaviour
     private void Spawn(Vector2Int _matrixPosition)
     {
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
-        ResourceManager.instance.Add(-blockGroup.cost);
         GameObject newObj = Instantiate(blockGroupPrefab, position, transform.rotation);
         newObj.GetComponent<BlockGroup>().Place();
         TurnManager.instance.StartNewTurn();
