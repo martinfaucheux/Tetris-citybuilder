@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FieldBlock : Block
 {
-    int foodAmount = 5;
+    public int foodAmount = 5;
     public override void OnPlace()
     {
         ResourceManager.instance.AddFood(foodAmount);

@@ -31,6 +31,11 @@ public struct Price
         return price1 + (-1) * price2;
     }
 
+    public static Price operator -(Price price1)
+    {
+        return (-1) * price1;
+    }
+
     public static Price operator *(int mult, Price cost)
     {
         return new Price(cost.gold * mult, cost.food * mult, cost.people * mult);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HouseBlock : Block
 {
-    int peopleAmount = 3;
+    public int peopleAmount = 3;
     public override void OnPlace()
     {
         ResourceManager.instance.AddPeople(peopleAmount);
