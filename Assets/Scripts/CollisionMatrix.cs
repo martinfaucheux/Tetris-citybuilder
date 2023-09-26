@@ -51,7 +51,7 @@ public class CollisionMatrix : Singleton<CollisionMatrix>
         Vector3 realPos = transform.position - origin;
         float x = realPos.x;
         float y = realPos.y;
-        return new Vector2Int((int)x, (int)y);
+        return new Vector2Int(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
     }
 
 

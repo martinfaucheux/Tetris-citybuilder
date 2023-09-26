@@ -81,7 +81,6 @@ public class BlockInstanciator : MonoBehaviour
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
         Instantiate(blockGroupPrefab, position, transform.rotation);
         ResourceManager.instance.AddGold(-blockGroup.cost);
-        Debug.LogError(blockGroup.cost);
     }
 
     public Vector2Int? GetSpawnPosition()
