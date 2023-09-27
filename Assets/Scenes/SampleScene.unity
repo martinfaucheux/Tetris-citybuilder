@@ -1288,7 +1288,7 @@ MonoBehaviour:
   <permanentResources>k__BackingField:
     gold: 50
     food: 10
-    people: 10
+    people: 5
 --- !u!114 &1440337145
 MonoBehaviour:
   m_ObjectHideFlags: 0

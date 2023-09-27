@@ -11,9 +11,4 @@ public abstract class Block : MonoBehaviour
     public virtual ResourceGroup GetPermanentProduct() => new ResourceGroup();
 
     public void Place() => BlockManager.instance.Register(this);
-
-    public virtual void OnPlace() { }
-
-
-
 }

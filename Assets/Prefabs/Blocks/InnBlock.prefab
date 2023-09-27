@@ -116,4 +116,4 @@ MonoBehaviour:
     food: 2
     people: 1
   matrixCollider: {fileID: 2499363784717398140}
-  goldYield: 5
+  goldYield: 4
