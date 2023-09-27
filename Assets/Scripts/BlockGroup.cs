@@ -10,14 +10,13 @@ public class BlockGroup : MonoBehaviour
     public ResourceGroup cost { get => blocks.Select(b => b.cost).Aggregate((x,y) => x+y); }
     
     Block[] blocks;
-    MatrixCollider[] childColliders;
+    MatrixCollider[] childColliders { get => blocks.Select(b => b.matrixCollider).ToArray(); }
     CollisionMatrix _matrix{ get => CollisionMatrix.instance; }
     Vector2Int _matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
 
     void Awake()
     {
         blocks = GetComponentsInChildren<Block>(true);
-        childColliders = blocks.Select(b => b.matrixCollider).ToArray();
     }
 
     public Vector2Int GetLowestPosition(int x)

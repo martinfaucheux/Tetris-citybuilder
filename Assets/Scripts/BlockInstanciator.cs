@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BlockInstanciator : MonoBehaviour
+public class BlockInstanciator : Singleton<BlockInstanciator>
 {
     public GameObject blockGroupPrefab;
     public float moveCooldown = 0.1f;
@@ -18,8 +18,7 @@ public class BlockInstanciator : MonoBehaviour
 
     void Start()
     {
-        GameObject ghostObject = Instantiate(blockGroupPrefab, transform.position, Quaternion.identity, transform);
-        blockGroup = ghostObject.GetComponent<BlockGroup>();
+        SetGhostObject(blockGroupPrefab);
     }
 
     // Update is called once per frame
@@ -79,7 +78,7 @@ public class BlockInstanciator : MonoBehaviour
     private void Spawn(Vector2Int _matrixPosition)
     {
         Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
-        GameObject newObj = Instantiate(blockGroupPrefab, position, transform.rotation);
+        GameObject newObj = Instantiate(blockGroup.gameObject, position, transform.rotation);
         newObj.GetComponent<BlockGroup>().Place();
         TurnManager.instance.StartNewTurn();
     }
@@ -95,5 +94,14 @@ public class BlockInstanciator : MonoBehaviour
             return basePosition;
         }
         return null;
+    }
+
+    public void SetGhostObject(GameObject blockGroupObj)
+    {
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);
+        
+        GameObject ghostObject = Instantiate(blockGroupObj, transform.position, Quaternion.identity, transform);
+        blockGroup = ghostObject.GetComponent<BlockGroup>();
     }
 }

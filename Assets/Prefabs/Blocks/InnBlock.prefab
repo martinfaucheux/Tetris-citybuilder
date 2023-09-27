@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2499363784717398138}
   - component: {fileID: 2499363784717398139}
   - component: {fileID: 2499363784717398140}
-  - component: {fileID: 4316560930223997890}
+  - component: {fileID: 2325947126397404425}
   m_Layer: 0
-  m_Name: FieldBlock
+  m_Name: InnBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5082325, g: 0.764151, b: 0.58786815, a: 1}
+  m_Color: {r: 0.7075472, g: 0.41718584, b: 0.67643714, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matrixPosition: {x: 0, y: 0}
---- !u!114 &4316560930223997890
+--- !u!114 &2325947126397404425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,12 +108,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499363784717398141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfcd630490287884d9eace6eee9d4da7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a45f0629cb0a7d4fb8dd0a098bfdaad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost:
     gold: 10
-    food: 0
+    food: 2
     people: 1
   matrixCollider: {fileID: 2499363784717398140}
-  foodAmount: 5
+  goldYield: 5

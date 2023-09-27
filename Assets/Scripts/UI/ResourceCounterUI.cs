@@ -13,7 +13,7 @@ public class ResourceCounterUI : MonoBehaviour
     {
         ResourceGroup resources = ResourceManager.instance.staticResources;
         goldText.text = $"Gold: {resources.gold}";
-        foodText.text = $"Gold: {resources.food}";
-        peopleText.text = $"Gold: {resources.people}";
+        foodText.text = $"Food: {resources.food}";
+        peopleText.text = $"People: {resources.people}";
     }
 }
