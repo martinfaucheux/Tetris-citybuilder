@@ -61,17 +61,15 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
             }
         }
 
-        if (
-            Input.GetKeyDown(KeyCode.S)
-            && ResourceManager.instance.CanAfford(blockGroup.cost)
-            )
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            Vector2Int? spawnPos = GetSpawnPosition();
-            if (spawnPos == null) {
-                Debug.LogError("Max iteration reached");
-            } else {
-                Spawn((Vector2Int)spawnPos);
+            if (ResourceManager.instance.CanAfford(blockGroup.cost) )
+            {
+                Vector2Int spawnPos = blockGroup.GetLowestPosition(matrixPosition.x);
+                Spawn(spawnPos);
             }
+            else
+                Debug.Log("Not enough resources");
         }   
     }
 
@@ -83,21 +81,10 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         TurnManager.instance.StartNewTurn();
     }
 
-    public Vector2Int? GetSpawnPosition()
-    {
-        for (int y = 0; y < maxIteriation; y ++ )
-        {
-            Vector2Int basePosition = new Vector2Int(matrixPosition.x, y);
-            if (!blockGroup.IsValidPosition(basePosition))
-                continue;
-
-            return basePosition;
-        }
-        return null;
-    }
 
     public void SetGhostObject(GameObject blockGroupObj)
     {
+        transform.rotation = Quaternion.identity;
         foreach (Transform child in transform)
             Destroy(child.gameObject);
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class BlockGroup : MonoBehaviour
@@ -19,17 +20,23 @@ public class BlockGroup : MonoBehaviour
         blocks = GetComponentsInChildren<Block>(true);
     }
 
-    public Vector2Int GetLowestPosition(int x)
+    public Vector2Int GetLowestPosition(int xBase)
     {
-        int y = 0;
-        while (true)
+        int yBaseMin= 0;
+        foreach(Block childBlock in blocks)
         {
-            Vector2Int basePosition = new Vector2Int(x, y);
-            if (!IsValidPosition(basePosition))
-                continue;
+            Vector2Int relativePosition = childBlock.matrixCollider.matrixPosition - _matrixPosition;
+            int x = xBase + relativePosition.x;
 
-            return basePosition;
+            int yMin = 0;
+            foreach (Block block in BlockManager.instance.blockList)
+            {
+                if (block.matrixCollider.matrixPosition.x == x)
+                    yMin = Mathf.Max(block.matrixCollider.matrixPosition.y + 1, yMin);
+            }
+            yBaseMin = Mathf.Max(yBaseMin, yMin - relativePosition.y);
         }
+        return new Vector2Int(xBase, yBaseMin);
     }
 
     public bool IsValidPosition(Vector2Int basePosition)

@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost:
-    gold: 10
+    gold: 5
     food: 0
     people: 1
   matrixCollider: {fileID: 2499363784717398140}

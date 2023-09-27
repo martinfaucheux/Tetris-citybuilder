@@ -22,4 +22,17 @@ public class BlockManager : Singleton<BlockManager>
             ResourceManager.instance.Add(block.GetPermanentProduct());
         }
     }
+
+    public int GetRoofHeight(int xMin, int xMax)
+    {
+        int roofHeight = 0;
+        foreach(Block block in blockList)
+        {
+            Vector2Int matrixPostion = block.matrixCollider.matrixPosition;
+            if (matrixPostion.x >= xMin && matrixPostion.x <= xMax)
+                roofHeight = Mathf.Max(matrixPostion.y, roofHeight);
+        }
+        return roofHeight;
+    }
+
 }
