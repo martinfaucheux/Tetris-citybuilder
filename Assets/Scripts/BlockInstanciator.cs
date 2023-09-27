@@ -28,15 +28,15 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
             return;
 
         int disp = 0;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.Q))
             disp = -1;
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
             disp = 1;
 
         int rot = 0;
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.A))
             rot = -1;
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.E))
             rot = 1;
 
         if (rot != 0)
@@ -62,7 +62,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         }
 
         if (
-            Input.GetKeyDown(KeyCode.Space)
+            Input.GetKeyDown(KeyCode.S)
             && ResourceManager.instance.CanAfford(blockGroup.cost)
             )
         {
