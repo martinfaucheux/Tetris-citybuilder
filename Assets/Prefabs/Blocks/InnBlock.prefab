@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2499363784717398138}
   - component: {fileID: 2499363784717398139}
   - component: {fileID: 2499363784717398140}
-  - component: {fileID: 2325947126397404425}
+  - component: {fileID: -141815864006860375}
   - component: {fileID: 7366956188201262357}
   - component: {fileID: -537374328303649798}
   m_Layer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matrixPosition: {x: 0, y: 0}
---- !u!114 &2325947126397404425
+--- !u!114 &-141815864006860375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499363784717398141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a45f0629cb0a7d4fb8dd0a098bfdaad, type: 3}
+  m_Script: {fileID: 11500000, guid: 94ae25658f77e834ea11f8b0faba92fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blockName: Inn
@@ -120,8 +120,16 @@ MonoBehaviour:
     food: 2
     people: 1
   matrixCollider: {fileID: 2499363784717398140}
-  goldYield: 4
-  satisfactionAura: 1
+  <isPlaced>k__BackingField: 0
+  product:
+    gold: 0
+    food: 0
+    people: 0
+  permanentProduct:
+    gold: 3
+    food: 0
+    people: 0
+  satisfactionAura: 2
 --- !u!61 &7366956188201262357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd04b420a55229469cf516c2e66aa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 2325947126397404425}
+  block: {fileID: -141815864006860375}

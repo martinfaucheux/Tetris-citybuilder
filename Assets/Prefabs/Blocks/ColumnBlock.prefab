@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2499363784717398138}
   - component: {fileID: 2499363784717398139}
   - component: {fileID: 2499363784717398140}
-  - component: {fileID: 6730724298071857332}
-  - component: {fileID: -8431932524831570919}
-  - component: {fileID: -3466120706031803222}
+  - component: {fileID: -141815864006860375}
+  - component: {fileID: 7366956188201262357}
+  - component: {fileID: -537374328303649798}
   m_Layer: 0
-  m_Name: HouseBlock
+  m_Name: ColumnBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.37254903, g: 0.45098042, b: 0.6039216, a: 1}
+  m_Color: {r: 0.8962264, g: 0.81968755, b: 0.7482645, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matrixPosition: {x: 0, y: 0}
---- !u!114 &6730724298071857332
+--- !u!114 &-141815864006860375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,20 +110,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499363784717398141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe26fd2fc005fad4d8a30dc9a53fd888, type: 3}
+  m_Script: {fileID: 11500000, guid: 94ae25658f77e834ea11f8b0faba92fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockName: House
+  blockName: Column
   description: 
   cost:
-    gold: 10
-    food: 3
+    gold: 3
+    food: 0
     people: 0
   matrixCollider: {fileID: 2499363784717398140}
   <isPlaced>k__BackingField: 0
-  peopleAmount: 3
-  taxPerPeople: 1
---- !u!61 &-8431932524831570919
+  product:
+    gold: 0
+    food: 0
+    people: 0
+  permanentProduct:
+    gold: 0
+    food: 0
+    people: 0
+  satisfactionAura: 1
+--- !u!61 &7366956188201262357
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +156,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3466120706031803222
+--- !u!114 &-537374328303649798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd04b420a55229469cf516c2e66aa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 6730724298071857332}
+  block: {fileID: -141815864006860375}

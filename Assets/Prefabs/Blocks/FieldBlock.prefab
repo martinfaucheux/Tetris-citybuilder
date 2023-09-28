@@ -120,7 +120,9 @@ MonoBehaviour:
     food: 0
     people: 1
   matrixCollider: {fileID: 2499363784717398140}
-  foodAmount: 5
+  <isPlaced>k__BackingField: 0
+  foodAmount: 3
+  skyBonus: 5
 --- !u!61 &530433385274147957
 BoxCollider2D:
   m_ObjectHideFlags: 0
