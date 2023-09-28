@@ -9,7 +9,7 @@ public class HouseBlock : Block
 
     public override ResourceGroup GetProduct()
     {
-        int peopleYield = peopleAmount + SatisfactionManager.instance.GetSatisfaction(matrixCollider.matrixPosition);
+        int peopleYield = peopleAmount + GetSatisfaction();
         return new ResourceGroup(people: peopleYield);
     }
 

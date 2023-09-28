@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public struct ResourceGroup 
+public struct ResourceGroup
 {
     public int gold;
     public int food;
@@ -49,4 +49,15 @@ public struct ResourceGroup
     }
 
     public bool isPositive() => gold >= 0 && food >= 0 && people >= 0;
+
+    public override string ToString()
+    {
+        string result = "";
+        if (gold != 0) result += $"Gold: {gold}, ";
+        if (food != 0) result += $"Food: {food}, ";
+        if (people != 0) result += $"People: {people}, ";
+        return result.TrimEnd(',', ' ');
+    }
+
+    public bool IsZero() => gold == 0 && food == 0 && people == 0;
 }

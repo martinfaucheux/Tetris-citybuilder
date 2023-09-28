@@ -8,13 +8,13 @@ public class MatrixCollider : MonoBehaviour
     public Vector2Int matrixPosition;
     private CollisionMatrix _collisionMatrix;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         _collisionMatrix = CollisionMatrix.instance;
         SynchronizePosition();
         _collisionMatrix.AddCollider(this);
     }
+
 
     private void OnDestroy()
     {

@@ -8,12 +8,15 @@ public class SatisfactionManager : Singleton<SatisfactionManager>
 
     public void ComputeGrid()
     {
+        satisfactionGrid = new GenericGrid<int>();
         foreach (Block block in BlockManager.instance.blockList)
         {
             foreach (KeyValuePair<Vector2Int, int> pair in block.GetSatisfactionAura())
             {
-                Vector2Int pos = pair.Key + block.matrixCollider.matrixPosition;
-                satisfactionGrid[pos] += pair.Value;
+                Vector2Int matrixPosition = pair.Key + block.matrixCollider.matrixPosition;
+                if (!satisfactionGrid.ContainsKey(matrixPosition))
+                    satisfactionGrid[matrixPosition] = 0;
+                satisfactionGrid[matrixPosition] += pair.Value;
             }
         }
     }
