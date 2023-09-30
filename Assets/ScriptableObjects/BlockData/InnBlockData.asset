@@ -18,6 +18,7 @@ MonoBehaviour:
     gold: 10
     food: 2
     people: 1
+  rarity: 3
   prefab: {fileID: 8540854704036334866, guid: 52c15f7731a002b4496895f746fb5193, type: 3}
   product:
     gold: 0

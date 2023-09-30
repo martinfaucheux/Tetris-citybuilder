@@ -69,7 +69,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (ResourceManager.instance.CanAfford(blockGroup.cost))
+            if (ResourceManager.instance.CheckCanAfford(blockGroup.cost))
             {
                 Vector2Int spawnPos = blockGroup.GetLowestPosition(BlockContextManager.instance.currentContext, groupContextPosition.x);
                 Spawn(spawnPos);

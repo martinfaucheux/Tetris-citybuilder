@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
@@ -14,10 +15,16 @@ public class ResourceManager : Singleton<ResourceManager>
     [field: SerializeField]
     [Tooltip("Resources kept between turns")]
     public ResourceGroup permanentResources { get; private set; }
-
+    public StatusTextUI statusTextUI;
     public BlockContext currentContext => BlockContextManager.instance.currentContext;
 
-    public bool CanAfford(ResourceGroup cost) => (staticResources - cost).isPositive();
+    public bool CheckCanAfford(ResourceGroup cost)
+    {
+        bool canAfford = (staticResources - cost).isPositive();
+        if (!canAfford)
+            statusTextUI.SetText(ExplainLack(cost));
+        return canAfford;
+    }
 
     public void Add(ResourceGroup resources) => permanentResources += resources;
 
@@ -39,4 +46,22 @@ public class ResourceManager : Singleton<ResourceManager>
         );
 
     public void AddPermanentProduct() => Add(GetUpkeep());
+
+    public string ExplainLack(ResourceGroup cost)
+    {
+        ResourceGroup lack = staticResources - cost;
+        if (lack.gold < 0)
+        {
+            return $"You need don't have enough gold";
+        }
+        if (lack.food < 0)
+        {
+            return $"You need don't have enough food";
+        }
+        if (lack.people < 0)
+        {
+            return $"You need don't have enough people";
+        }
+        return "";
+    }
 }

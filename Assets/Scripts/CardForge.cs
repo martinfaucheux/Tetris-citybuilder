@@ -69,7 +69,6 @@ public class CardForge : Singleton<CardForge>
     {
         float randValue = blockCountDistribution.Evaluate(Random.value);
         int intValue = Mathf.RoundToInt(randValue * (blockCountRange.y - blockCountRange.x) + blockCountRange.x);
-        Debug.Log($"{randValue} => {intValue}");
         return intValue;
     }
 
