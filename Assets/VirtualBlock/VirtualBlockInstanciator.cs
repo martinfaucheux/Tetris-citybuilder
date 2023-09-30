@@ -91,6 +91,7 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
 
         ghostGameObject.transform.SetParent(null);
         RefreshGhostObject();
+        TurnManager.instance.EndTurn();
     }
 
 

@@ -10,7 +10,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
     public int maxIteriation = 10000;
 
     private BlockGroup blockGroup;
-    
+
 
     float _lastMoveTime = 0f;
 
@@ -63,14 +63,14 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (ResourceManager.instance.CanAfford(blockGroup.cost) )
+            if (ResourceManager.instance.CanAfford(blockGroup.cost))
             {
                 Vector2Int spawnPos = blockGroup.GetLowestPosition(matrixPosition.x);
                 Spawn(spawnPos);
             }
             else
                 Debug.Log("Not enough resources");
-        }   
+        }
     }
 
     private void Spawn(Vector2Int _matrixPosition)
@@ -87,7 +87,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         transform.rotation = Quaternion.identity;
         foreach (Transform child in transform)
             Destroy(child.gameObject);
-        
+
         GameObject ghostObject = Instantiate(blockGroupObj, transform.position, Quaternion.identity, transform);
         blockGroup = ghostObject.GetComponent<BlockGroup>();
     }

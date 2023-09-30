@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New BlockData", menuName = "ScriptableObjects / BlockData")]
+[CreateAssetMenu(fileName = "DefaultBlockData", menuName = "ScriptableObjects / BlockData / Default")]
 public class BlockData : ScriptableObject
 {
     public string blockName;
@@ -11,31 +11,5 @@ public class BlockData : ScriptableObject
     public ResourceGroup cost;
     public GameObject prefab;
 
-    public BlockBinding.BlockType blockType;
-
-    public VirtualBlock CreateBlock()
-    {
-        VirtualBlock block = (VirtualBlock)Activator.CreateInstance(BlockBinding.GetClass(blockType), this);
-        block.data = this;
-        return block;
-    }
-}
-
-public static class BlockBinding
-{
-    public enum BlockType
-    {
-        Default,
-    }
-
-    public static Type GetClass(BlockType blockType)
-    {
-        switch (blockType)
-        {
-            case BlockType.Default:
-                return typeof(DefaultVirtualBlock);
-            default:
-                throw new Exception("Invalid block type");
-        }
-    }
+    public virtual VirtualBlock CreateBlock() => new DefaultVirtualBlock(this);
 }

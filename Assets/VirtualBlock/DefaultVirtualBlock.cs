@@ -4,4 +4,5 @@ using UnityEngine;
 
 public class DefaultVirtualBlock : VirtualBlock
 {
+    public DefaultVirtualBlock(BlockData data) : base(data) { }
 }

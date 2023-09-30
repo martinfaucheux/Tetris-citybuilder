@@ -8,6 +8,12 @@ public class BlockContext
     public Dictionary<VirtualBlock, Vector2Int> blockRegistry = new Dictionary<VirtualBlock, Vector2Int>();
     public int xMax = 4;
 
+    public BlockContext()
+    {
+        grid = new GenericGrid<VirtualBlock>();
+        blockRegistry = new Dictionary<VirtualBlock, Vector2Int>();
+    }
+
     public void Register(VirtualBlock block)
     {
         grid[block.position] = block;
