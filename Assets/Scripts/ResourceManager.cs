@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResourceManager : Singleton<ResourceManager>
@@ -14,6 +15,8 @@ public class ResourceManager : Singleton<ResourceManager>
     [Tooltip("Resources kept between turns")]
     public ResourceGroup permanentResources { get; private set; }
 
+    public BlockContext currentContext => BlockContextManager.instance.currentContext;
+
     public bool CanAfford(ResourceGroup cost) => (staticResources - cost).isPositive();
 
     public void Add(ResourceGroup resources) => permanentResources += resources;
@@ -21,10 +24,21 @@ public class ResourceManager : Singleton<ResourceManager>
     public void CalculateCurrentResources()
     {
         staticResources = new ResourceGroup(permanentResources);
-        foreach (Block block in BlockManager.instance.blockList)
+        foreach (Vector2Int contextPosition in currentContext.grid)
         {
+            Block block = currentContext.grid[contextPosition];
             staticResources += block.GetProduct();
-            staticResources -= block.cost;
+            staticResources -= block.GetCost();
         }
+    }
+
+    public void AddPermanentProduct()
+    {
+        ResourceGroup resourceGroup = (
+            currentContext.grid
+            .Select(v => currentContext.grid[v].GetPermanentProduct())
+            .Aggregate(new ResourceGroup(), (a, b) => a + b)
+        );
+        Add(resourceGroup);
     }
 }

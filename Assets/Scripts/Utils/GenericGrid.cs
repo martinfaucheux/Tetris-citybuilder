@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericGrid<T>
+public class GenericGrid<T> : IEnumerable<Vector2Int>
 {
 
     private Dictionary<Vector2Int, T> _dict = new Dictionary<Vector2Int, T>();
@@ -41,6 +41,19 @@ public class GenericGrid<T>
             }
         }
         return result;
+    }
+
+    public IEnumerator<Vector2Int> GetEnumerator()
+    {
+        foreach (Vector2Int vector in _dict.Keys)
+        {
+            yield return vector;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 
 }

@@ -5,25 +5,27 @@ using UnityEngine;
 
 public class BlockInstanciator : Singleton<BlockInstanciator>
 {
-    public GameObject blockGroupPrefab;
+
+    [field: SerializeField]
+    public Card selectedCard { get; private set; }
+    public BlockGroup blockGroup;
+    public GameObject ghostGameObject;
     public float moveCooldown = 0.1f;
     public int maxIteriation = 10000;
-
-    private BlockGroup blockGroup;
-    
-
     float _lastMoveTime = 0f;
-
-    public Vector2Int matrixPosition { get => CollisionMatrix.instance.GetMatrixPos(transform); }
+    Vector2Int instantiatePosition;
 
     void Start()
     {
-        SetGhostObject(blockGroupPrefab);
+        instantiatePosition = BlockContextManager.instance.GetContextPosition(transform.position);
+        RefreshGhostObject();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2Int groupContextPosition = BlockContextManager.instance.GetContextPosition(blockGroup.transform.position);
+
         if (Time.time < _lastMoveTime + moveCooldown)
             return;
 
@@ -38,57 +40,86 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
             rot = -1;
         else if (Input.GetKeyDown(KeyCode.E))
             rot = 1;
-
         if (rot != 0)
         {
-            transform.Rotate(0, 0, rot * 90);
-            blockGroup.SynchronizePosition();
-            if (!blockGroup.IsValidPosition(matrixPosition))
+            blockGroup.Rotate(groupContextPosition, rot);
+            if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, groupContextPosition))
             {
-                transform.Rotate(0, 0, -rot * 90);
-                blockGroup.SynchronizePosition();
+                // update the transform rotation
+                blockGroup.transform.Rotate(0, 0, 90 * rot);
             }
+            else
+            {
+                // revert rotation
+                transform.Rotate(0, 0, -rot);
+            }
+            _lastMoveTime = Time.time;
         }
 
         if (disp != 0)
         {
-            Vector2Int newPos = matrixPosition + new Vector2Int(disp, 0);
-            if (blockGroup.IsValidPosition(newPos))
+            Vector2Int newPos = groupContextPosition + new Vector2Int(disp, 0);
+            if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, newPos))
             {
-                transform.position = CollisionMatrix.instance.GetRealWorldPosition(newPos);
-                blockGroup.SynchronizePosition();
+                instantiatePosition = newPos;
+                blockGroup.Move(newPos);
                 _lastMoveTime = Time.time;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (ResourceManager.instance.CanAfford(blockGroup.cost) )
+            if (ResourceManager.instance.CanAfford(blockGroup.cost))
             {
-                Vector2Int spawnPos = blockGroup.GetLowestPosition(matrixPosition.x);
+                Vector2Int spawnPos = blockGroup.GetLowestPosition(BlockContextManager.instance.currentContext, groupContextPosition.x);
                 Spawn(spawnPos);
             }
             else
+                // TODO: explain which resource is missing
                 Debug.Log("Not enough resources");
-        }   
+        }
     }
 
-    private void Spawn(Vector2Int _matrixPosition)
+    private void Spawn(Vector2Int contextPosition)
     {
-        Vector3 position = CollisionMatrix.instance.GetRealWorldPosition(_matrixPosition);
-        GameObject newObj = Instantiate(blockGroup.gameObject, position, transform.rotation);
-        newObj.GetComponent<BlockGroup>().Place();
-        TurnManager.instance.StartNewTurn();
+        // this assume the matrixPosition is valid
+
+        // update the contextPosition and transform positions
+        blockGroup.Move(contextPosition);
+
+        // blocks are registered in the Context
+        blockGroup.Register();
+
+        ghostGameObject.transform.SetParent(null);
+        ghostGameObject = null;
+        RefreshGhostObject();
+        TurnManager.instance.EndTurn();
+    }
+
+    public void SetSelectedCard(Card card)
+    {
+        if (card == null)
+        {
+            Debug.LogError("Trying to set a null card");
+            return;
+        }
+        selectedCard = card;
+        RefreshGhostObject();
     }
 
 
-    public void SetGhostObject(GameObject blockGroupObj)
+    private void RefreshGhostObject()
     {
-        transform.rotation = Quaternion.identity;
+        if (ghostGameObject != null)
+            Destroy(ghostGameObject);
+
+        // remove existing object
         foreach (Transform child in transform)
             Destroy(child.gameObject);
-        
-        GameObject ghostObject = Instantiate(blockGroupObj, transform.position, Quaternion.identity, transform);
-        blockGroup = ghostObject.GetComponent<BlockGroup>();
+
+        blockGroup = new BlockGroup(selectedCard);
+        ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
     }
+
+
 }

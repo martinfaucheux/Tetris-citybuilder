@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f756dadc0429554abbb943f2db0028d, type: 3}
+  m_Name: HouseBlockData
+  m_EditorClassIdentifier: 
+  blockName: House
+  description: 
+  cost:
+    gold: 10
+    food: 3
+    people: 0
+  prefab: {fileID: 8540854704036334866, guid: 8cf3023177fc5244f8929f0f749bd4e6, type: 3}
+  peopleAmount: 3
+  tax: 3

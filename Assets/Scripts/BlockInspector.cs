@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class BlockInspector : MonoBehaviour
 {
-    public Block block;
+    public BlockHolder blockHolder;
 
     private void OnMouseEnter()
     {
-        if (block.isPlaced)
-            BlockInspectorController.instance.FocusBlock(block);
+        BlockInspectorController.instance.FocusBlock(blockHolder);
     }
 
     private void OnMouseExit()
     {
-        if (block.isPlaced)
-            BlockInspectorController.instance.UnfocusBlock(block);
+        BlockInspectorController.instance.UnfocusBlock(blockHolder);
     }
 }
