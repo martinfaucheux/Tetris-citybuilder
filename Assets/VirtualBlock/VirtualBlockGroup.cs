@@ -79,8 +79,13 @@ public class VirtualBlockGroup
             Vector3 realPosition = BlockContextManager.instance.GetRealWorldPosition(contextPosition + relativePosition);
 
             GameObject newObj = GameObject.Instantiate(block.data.prefab, realPosition, Quaternion.identity, blockGameObject.transform);
-            block.blockHolder = newObj.GetComponent<BlockHolder>();
+            BlockHolder blockHolder = newObj.GetComponent<BlockHolder>();
+            block.blockHolder = blockHolder;
+            blockHolder.block = block;
+            blockHolder.blockData = block.data;
+
         }
+
         return blockGameObject;
     }
 

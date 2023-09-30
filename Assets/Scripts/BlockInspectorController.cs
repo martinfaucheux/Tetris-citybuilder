@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 public class BlockInspectorController : Singleton<BlockInspectorController>
 {
-    public Block focusedBlock;
+    public BlockHolder focusedBlockHolder;
     public TextMeshProUGUI blockTitle;
     public TextMeshProUGUI blockDescription;
     public CanvasGroup canvasGroup;
@@ -12,22 +12,22 @@ public class BlockInspectorController : Singleton<BlockInspectorController>
         UnfocusBlock();
     }
 
-    public void FocusBlock(Block block)
+    public void FocusBlock(BlockHolder blockHolder)
     {
-        focusedBlock = block;
+        focusedBlockHolder = blockHolder;
         canvasGroup.alpha = 1;
-        blockTitle.text = block.blockName;
-        blockDescription.text = block.GetDescription();
+        blockTitle.text = blockHolder.block.blockName;
+        blockDescription.text = blockHolder.block.GetDescription();
     }
 
-    public void UnfocusBlock(Block block = null)
+    public void UnfocusBlock(BlockHolder blockHolder = null)
     {
-        if (block != null || block == focusedBlock)
+        if (blockHolder != null || blockHolder == focusedBlockHolder)
         {
             canvasGroup.alpha = 0;
             blockTitle.text = "";
             blockDescription.text = "";
-            focusedBlock = null;
+            focusedBlockHolder = null;
         }
     }
 }
