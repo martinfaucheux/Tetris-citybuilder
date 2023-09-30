@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7318b7099f2e9d145867724033d18b22, type: 3}
-  m_Name: New BlockData
+  m_Name: DefaultBlockData
   m_EditorClassIdentifier: 
   blockName: Rock
   description: 

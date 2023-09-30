@@ -34,22 +34,26 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
         else if (Input.GetKeyDown(KeyCode.D))
             disp = 1;
 
-        // int rot = 0;
-        // if (Input.GetKeyDown(KeyCode.A))
-        //     rot = -1;
-        // else if (Input.GetKeyDown(KeyCode.E))
-        //     rot = 1;
-
-        // if (rot != 0)
-        // {
-        //     transform.Rotate(0, 0, rot * 90);
-        //     blockGroup.SynchronizePosition();
-        //     if (!blockGroup.IsValidPosition(matrixPosition))
-        //     {
-        //         transform.Rotate(0, 0, -rot * 90);
-        //         blockGroup.SynchronizePosition();
-        //     }
-        // }
+        int rot = 0;
+        if (Input.GetKeyDown(KeyCode.A))
+            rot = -1;
+        else if (Input.GetKeyDown(KeyCode.E))
+            rot = 1;
+        if (rot != 0)
+        {
+            blockGroup.Rotate(groupContextPosition, rot);
+            if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, groupContextPosition))
+            {
+                // update the transform rotation
+                blockGroup.transform.Rotate(0, 0, 90 * rot);
+            }
+            else
+            {
+                // revert rotation
+                transform.Rotate(0, 0, -rot);
+            }
+            _lastMoveTime = Time.time;
+        }
 
         if (disp != 0)
         {

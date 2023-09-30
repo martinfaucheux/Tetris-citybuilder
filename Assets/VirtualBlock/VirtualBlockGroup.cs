@@ -34,6 +34,20 @@ public class VirtualBlockGroup
         else Debug.LogWarning("No transform found when moving the block group");
     }
 
+    public void Rotate(Vector2Int contextPosition, int rotation)
+    {
+        GenericGrid<VirtualBlock> newGrid = new GenericGrid<VirtualBlock>();
+        foreach (Vector2Int relativePosition in grid)
+        {
+            VirtualBlock block = grid[relativePosition];
+            Vector2Int newRelativePosition = VectorUtils.Rotate(relativePosition, rotation);
+            newGrid[newRelativePosition] = block;
+            block.Move(contextPosition + newRelativePosition);
+        }
+        // TODO: this should also handle transform rotation
+        grid = newGrid;
+    }
+
     public Vector2Int GetLowestPosition(BlockContext context, int xBase)
     {
         int yBaseMin = 0;
@@ -61,6 +75,7 @@ public class VirtualBlockGroup
         foreach (Vector2Int relativePosition in grid)
         {
             VirtualBlock block = grid[relativePosition];
+            block.Move(contextPosition + relativePosition);
             Vector3 realPosition = BlockContextManager.instance.GetRealWorldPosition(contextPosition + relativePosition);
 
             GameObject newObj = GameObject.Instantiate(block.data.prefab, realPosition, Quaternion.identity, blockGameObject.transform);
