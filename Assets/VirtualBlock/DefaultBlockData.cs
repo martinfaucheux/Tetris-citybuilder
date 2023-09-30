@@ -1,9 +1,13 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// [CreateAssetMenu(fileName = "New BlockData", menuName = "ScriptableObjects / BlockData / DefaultBlockData")]
-// public class DefaultBlockData : BlockData
-// {
-//     // public override VirtualBlock CreateBlock() => new DefaultVirtualBlock();
-// }
+[CreateAssetMenu(fileName = "HouseBlockData", menuName = "ScriptableObjects / BlockData / Default")]
+public class DefaultBlockData : BlockData
+{
+    public ResourceGroup product;
+    public ResourceGroup permanentProduct;
+    public int satisfactionAura = 0;
+
+    public override VirtualBlock CreateBlock() => new DefaultVirtualBlock(this);
+}

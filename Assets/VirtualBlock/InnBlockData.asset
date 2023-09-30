@@ -9,14 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7318b7099f2e9d145867724033d18b22, type: 3}
-  m_Name: DefaultBlockData
+  m_Script: {fileID: 11500000, guid: f159fe6e30f9eb548bc167178244cbf9, type: 3}
+  m_Name: InnBlockData
   m_EditorClassIdentifier: 
-  blockName: Rock
+  blockName: Inn
   description: 
   cost:
+    gold: 10
+    food: 2
+    people: 1
+  prefab: {fileID: 8540854704036334866, guid: 52c15f7731a002b4496895f746fb5193, type: 3}
+  product:
     gold: 0
     food: 0
     people: 0
-  prefab: {fileID: 8540854704036334866, guid: bc8b409feda792d4582ee6a2c3bfb6b8, type: 3}
-  blockType: 0
+  permanentProduct:
+    gold: 3
+    food: 0
+    people: 0
+  satisfactionAura: 2

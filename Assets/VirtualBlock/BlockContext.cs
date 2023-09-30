@@ -21,4 +21,11 @@ public class BlockContext
     }
 
     public bool IsValidPosition(Vector2Int position) => position.y >= 0 && Mathf.Abs(position.x) <= xMax;
+
+    public VirtualBlock GetBlockAtPosition(Vector2Int position)
+    {
+        if (grid.ContainsKey(position))
+            return grid[position];
+        return null;
+    }
 }

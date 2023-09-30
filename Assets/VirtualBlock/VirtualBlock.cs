@@ -14,6 +14,8 @@ public abstract class VirtualBlock
 
     public void Move(Vector2Int contextPosition) => position = contextPosition;
 
+    // TODO: should it require a context to pass to compute the product against?
     public virtual ResourceGroup GetProduct() => new ResourceGroup();
     public virtual ResourceGroup GetPermanentProduct() => new ResourceGroup();
+    public virtual Dictionary<Vector2Int, int> GetSatisfactionAura() => new Dictionary<Vector2Int, int>();
 }
