@@ -12,15 +12,13 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
     public float moveCooldown = 0.1f;
     public int maxIteriation = 10000;
     float _lastMoveTime = 0f;
+    Vector2Int instantiatePosition;
 
     void Start()
     {
+        instantiatePosition = BlockContextManager.instance.GetContextPosition(transform.position);
         RefreshGhostObject();
     }
-
-
-
-
 
     // Update is called once per frame
     void Update()
@@ -58,6 +56,7 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
             Vector2Int newPos = groupContextPosition + new Vector2Int(disp, 0);
             if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, newPos))
             {
+                instantiatePosition = newPos;
                 blockGroup.Move(newPos);
                 _lastMoveTime = Time.time;
             }
@@ -98,9 +97,7 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
             Destroy(child.gameObject);
 
         blockGroup = new VirtualBlockGroup(selectedCard);
-        ghostGameObject = blockGroup.InstantiateGameObject(
-            BlockContextManager.instance.GetContextPosition(transform.position)
-        );
+        ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
     }
 
 
