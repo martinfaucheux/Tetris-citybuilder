@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class VirtualBlock
+public abstract class Block
 {
     // TODO: Should this position should be stored in the context instead?
     public Vector2Int position { get; private set; }
@@ -10,7 +10,7 @@ public abstract class VirtualBlock
     public BlockHolder blockHolder;
     public string blockName { get => data.blockName; }
 
-    public VirtualBlock(BlockData data) { this.data = data; }
+    public Block(BlockData data) { this.data = data; }
 
     public ResourceGroup GetCost() => data.cost;
 

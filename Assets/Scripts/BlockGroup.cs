@@ -6,18 +6,18 @@ using System.Linq;
 
 
 
-public class VirtualBlockGroup
+public class BlockGroup
 {
-    public GenericGrid<VirtualBlock> grid;
+    public GenericGrid<Block> grid;
     public ResourceGroup cost { get => grid.Select(v => grid[v].GetCost()).Aggregate((x, y) => x + y); }
     public Transform transform;
 
-    public VirtualBlockGroup(Card card)
+    public BlockGroup(Card card)
     {
-        grid = new GenericGrid<VirtualBlock>();
+        grid = new GenericGrid<Block>();
         foreach (BlockPosition blockPosition in card.blockPositions)
         {
-            VirtualBlock block = blockPosition.blockData.CreateBlock();
+            Block block = blockPosition.blockData.CreateBlock();
             grid[blockPosition.position] = block;
         }
     }
@@ -26,7 +26,7 @@ public class VirtualBlockGroup
     {
         foreach (Vector2Int relativePosition in grid)
         {
-            VirtualBlock block = grid[relativePosition];
+            Block block = grid[relativePosition];
             block.Move(contextPosition + relativePosition);
         }
         if (transform != null)
@@ -36,10 +36,10 @@ public class VirtualBlockGroup
 
     public void Rotate(Vector2Int contextPosition, int rotation)
     {
-        GenericGrid<VirtualBlock> newGrid = new GenericGrid<VirtualBlock>();
+        GenericGrid<Block> newGrid = new GenericGrid<Block>();
         foreach (Vector2Int relativePosition in grid)
         {
-            VirtualBlock block = grid[relativePosition];
+            Block block = grid[relativePosition];
             Vector2Int newRelativePosition = VectorUtils.Rotate(relativePosition, rotation);
             newGrid[newRelativePosition] = block;
             block.Move(contextPosition + newRelativePosition);
@@ -53,7 +53,7 @@ public class VirtualBlockGroup
         int yBaseMin = 0;
         foreach (Vector2Int relativePosition in grid)
         {
-            VirtualBlock childBlock = grid[relativePosition];
+            Block childBlock = grid[relativePosition];
             int x = xBase + relativePosition.x;
 
             int yMin = 0;
@@ -74,7 +74,7 @@ public class VirtualBlockGroup
 
         foreach (Vector2Int relativePosition in grid)
         {
-            VirtualBlock block = grid[relativePosition];
+            Block block = grid[relativePosition];
             block.Move(contextPosition + relativePosition);
             Vector3 realPosition = BlockContextManager.instance.GetRealWorldPosition(contextPosition + relativePosition);
 
@@ -93,7 +93,7 @@ public class VirtualBlockGroup
     {
         foreach (Vector2Int relativePosition in grid)
         {
-            VirtualBlock block = grid[relativePosition];
+            Block block = grid[relativePosition];
             BlockContextManager.instance.currentContext.Register(block);
         }
     }

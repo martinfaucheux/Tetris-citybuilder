@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HouseVirtualBlock : VirtualBlock
+public class HouseBlock : Block
 {
-    public HouseVirtualBlock(BlockData data) : base(data) { }
+    public HouseBlock(BlockData data) : base(data) { }
 
     // TODO: add bonus for satisfaction
     public override ResourceGroup GetProduct()

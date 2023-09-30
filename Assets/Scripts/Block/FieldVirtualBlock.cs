@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldVirtualBlock : VirtualBlock
+public class FieldBlock : Block
 {
-    public FieldVirtualBlock(BlockData data) : base(data) { }
+    public FieldBlock(BlockData data) : base(data) { }
     public override ResourceGroup GetProduct()
     {
         int foodValue = ((FieldBlockData)data).baseFoodValue;
-        VirtualBlock otherblock = (
+        Block otherblock = (
             BlockContextManager.instance.currentContext
             .GetBlockAtPosition(position + Vector2Int.up
         ));

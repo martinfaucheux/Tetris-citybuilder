@@ -7,5 +7,5 @@ public class HouseBlockData : BlockData
 {
     public int peopleAmount = 3;
     public int tax = 3;
-    public override VirtualBlock CreateBlock() => new HouseVirtualBlock(this);
+    public override Block CreateBlock() => new HouseBlock(this);
 }

@@ -9,5 +9,5 @@ public class DefaultBlockData : BlockData
     public ResourceGroup permanentProduct;
     public int satisfactionAura = 0;
 
-    public override VirtualBlock CreateBlock() => new DefaultVirtualBlock(this);
+    public override Block CreateBlock() => new DefaultBlock(this);
 }

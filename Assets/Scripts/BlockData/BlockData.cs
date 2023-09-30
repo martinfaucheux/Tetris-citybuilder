@@ -10,5 +10,5 @@ public abstract class BlockData : ScriptableObject
     public ResourceGroup cost;
     public GameObject prefab;
 
-    public abstract VirtualBlock CreateBlock();
+    public abstract Block CreateBlock();
 }

@@ -9,7 +9,7 @@ public class BlockGroupPicker : MonoBehaviour
 
     void Start()
     {
-        VirtualBlockGroup blockGroup = new VirtualBlockGroup(card);
+        BlockGroup blockGroup = new BlockGroup(card);
         GameObject newObj = blockGroup.InstantiateGameObject(
             BlockContextManager.instance.GetContextPosition(transform.position)
         );
@@ -22,9 +22,9 @@ public class BlockGroupPicker : MonoBehaviour
         SetSelectedCard();
     }
 
-    public void SetSelectedCard() => VirtualBlockInstanciator.instance.SetSelectedCard(card);
+    public void SetSelectedCard() => BlockInstanciator.instance.SetSelectedCard(card);
 
-    public void SetColliderBounds(VirtualBlockGroup blockGroup)
+    public void SetColliderBounds(BlockGroup blockGroup)
     {
         int xMin = int.MaxValue;
         int xMax = int.MinValue;

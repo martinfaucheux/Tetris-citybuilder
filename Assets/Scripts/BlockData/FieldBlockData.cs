@@ -7,5 +7,5 @@ public class FieldBlockData : BlockData
 {
     public int baseFoodValue = 3;
     public int skyFoodBonus = 5;
-    public override VirtualBlock CreateBlock() => new FieldVirtualBlock(this);
+    public override Block CreateBlock() => new FieldBlock(this);
 }

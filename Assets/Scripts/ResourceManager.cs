@@ -26,7 +26,7 @@ public class ResourceManager : Singleton<ResourceManager>
         staticResources = new ResourceGroup(permanentResources);
         foreach (Vector2Int contextPosition in currentContext.grid)
         {
-            VirtualBlock block = currentContext.grid[contextPosition];
+            Block block = currentContext.grid[contextPosition];
             staticResources += block.GetProduct();
             staticResources -= block.GetCost();
         }

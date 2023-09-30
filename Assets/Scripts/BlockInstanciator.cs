@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
+public class BlockInstanciator : Singleton<BlockInstanciator>
 {
 
     [field: SerializeField]
     public Card selectedCard { get; private set; }
-    public VirtualBlockGroup blockGroup;
+    public BlockGroup blockGroup;
     public GameObject ghostGameObject;
     public float moveCooldown = 0.1f;
     public int maxIteriation = 10000;
@@ -117,7 +117,7 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
         foreach (Transform child in transform)
             Destroy(child.gameObject);
 
-        blockGroup = new VirtualBlockGroup(selectedCard);
+        blockGroup = new BlockGroup(selectedCard);
         ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
     }
 

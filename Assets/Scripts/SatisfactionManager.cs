@@ -13,7 +13,7 @@ public class SatisfactionManager : Singleton<SatisfactionManager>
         satisfactionGrid = new GenericGrid<int>();
         foreach (Vector2Int blockPosition in currentContext.grid)
         {
-            VirtualBlock block = currentContext.grid[blockPosition];
+            Block block = currentContext.grid[blockPosition];
             foreach (KeyValuePair<Vector2Int, int> pair in block.GetSatisfactionAura())
             {
                 Vector2Int targetPosition = blockPosition + pair.Key;
