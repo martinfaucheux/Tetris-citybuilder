@@ -103,15 +103,5 @@ public class BlockGroup
     );
 
     // TODO: function to get the 2d bounds of the group
-    public BoundsInt GetBounds()
-    {
-        Vector2Int min = new Vector2Int(int.MaxValue, int.MaxValue);
-        Vector2Int max = new Vector2Int(int.MinValue, int.MinValue);
-        foreach (Vector2Int relativePosition in grid)
-        {
-            min = Vector2Int.Min(min, relativePosition);
-            max = Vector2Int.Max(max, relativePosition);
-        }
-        return new BoundsInt((Vector3Int)min, (Vector3Int)(max - min + Vector2Int.one));
-    }
+    public Bounds GetBounds() => grid.GetBounds();
 }

@@ -32,3 +32,17 @@ public static class MatrixUtils
         return neighbors;
     }
 }
+
+public struct Bounds
+{
+    public Vector2Int min;
+    public Vector2Int max;
+    public Bounds(Vector2Int min, Vector2Int max)
+    {
+        this.min = min;
+        this.max = max;
+    }
+
+    public Vector2 size { get => new Vector2(1 + max.x - min.x, 1 + max.y - min.y); }
+    public Vector2 center { get => new Vector2((max.x + min.x) / 2f, (max.y + min.y) / 2f); }
+}

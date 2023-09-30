@@ -22,11 +22,7 @@ public class BlockContextManager : Singleton<BlockContextManager>
         return origin + realWorldPos;
     }
 
-    public Vector2Int GetContextPosition(Vector3 realWorldPos)
-    {
-        Vector3 realPos = realWorldPos - origin;
-        float x = realPos.x;
-        float y = realPos.y;
-        return new Vector2Int(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
-    }
+    public Vector2Int GetContextPosition(Vector3 realWorldPos) => VectorUtils.ToVector2Int(
+        realWorldPos - origin
+    );
 }

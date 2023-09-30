@@ -55,5 +55,43 @@ public class GenericGrid<T> : IEnumerable<Vector2Int>
     {
         return GetEnumerator();
     }
+    public Vector2Int GetRandomPosition()
+    {
+        List<Vector2Int> keys = new List<Vector2Int>(_dict.Keys);
+        int randomIndex = Random.Range(0, keys.Count);
+        return keys[randomIndex];
+    }
 
+    public static GenericGrid<T> operator +(GenericGrid<T> grid, Vector2Int vect)
+    {
+        GenericGrid<T> result = new GenericGrid<T>();
+        foreach (Vector2Int position in grid)
+        {
+            result[position + vect] = grid[position];
+        }
+        return result;
+    }
+
+    public Bounds GetBounds()
+    {
+        int xMin = int.MaxValue;
+        int xMax = int.MinValue;
+        int yMin = int.MaxValue;
+        int yMax = int.MinValue;
+        foreach (Vector2Int relativePosition in this)
+        {
+            xMin = Mathf.Min(xMin, relativePosition.x);
+            xMax = Mathf.Max(xMax, relativePosition.x);
+            yMin = Mathf.Min(yMin, relativePosition.y);
+            yMax = Mathf.Max(yMax, relativePosition.y);
+        }
+        return new Bounds(new Vector2Int(xMin, yMin), new Vector2Int(xMax, yMax));
+    }
+
+    public GenericGrid<T> GetCenteredGrid()
+    {
+        Vector2Int center = VectorUtils.ToVector2Int(GetBounds().center);
+        return this + (-center);
+    }
 }
+

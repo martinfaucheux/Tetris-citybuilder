@@ -30,4 +30,6 @@ public static class VectorUtils
                 return vector;
         }
     }
+
+    public static Vector2Int ToVector2Int(Vector2 v) => new Vector2Int(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y));
 }
