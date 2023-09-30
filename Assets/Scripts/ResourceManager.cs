@@ -32,13 +32,11 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
-    public void AddPermanentProduct()
-    {
-        ResourceGroup resourceGroup = (
+    public ResourceGroup GetUpkeep() => (
             currentContext.grid
             .Select(v => currentContext.grid[v].GetPermanentProduct())
             .Aggregate(new ResourceGroup(), (a, b) => a + b)
         );
-        Add(resourceGroup);
-    }
+
+    public void AddPermanentProduct() => Add(GetUpkeep());
 }
