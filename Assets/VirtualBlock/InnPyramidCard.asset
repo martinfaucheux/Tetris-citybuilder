@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: InnPyramidCard
   m_EditorClassIdentifier: 
   blockPositions:
+  - position: {x: 0, y: 0}
+    blockData: {fileID: 11400000, guid: 5ee4479428b43c2458befb5b6423d0c8, type: 2}
   - position: {x: -1, y: 0}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
-  - position: {x: 0, y: 0}
-    blockData: {fileID: 11400000, guid: 088da551690095c47a78d5928cafdb06, type: 2}
   - position: {x: 1, y: 0}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
-  - position: {x: 2, y: 0}
+  - position: {x: 0, y: 1}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}

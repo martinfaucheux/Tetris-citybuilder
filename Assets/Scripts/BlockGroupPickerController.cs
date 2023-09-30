@@ -9,8 +9,8 @@ public class BlockGroupPickerController : MonoBehaviour
 
     private void Start()
     {
-        pickers =transform.GetComponentsInChildren<BlockGroupPicker>();
-        pickers[0].SetGhostObject();
+        pickers = transform.GetComponentsInChildren<BlockGroupPicker>();
+        pickers[0].SetSelectedCard();
     }
 
     private void Update()
@@ -18,7 +18,7 @@ public class BlockGroupPickerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             selectedPickerIdx = (selectedPickerIdx + 1) % pickers.Length;
-            pickers[selectedPickerIdx].SetGhostObject();
+            pickers[selectedPickerIdx].SetSelectedCard();
         }
     }
 }

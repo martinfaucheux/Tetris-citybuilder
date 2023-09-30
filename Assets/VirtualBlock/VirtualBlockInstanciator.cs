@@ -6,7 +6,8 @@ using UnityEngine;
 public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
 {
 
-    public Card selectedCard;
+    [field: SerializeField]
+    public Card selectedCard { get; private set; }
     public VirtualBlockGroup blockGroup;
     public GameObject ghostGameObject;
     public float moveCooldown = 0.1f;
@@ -90,13 +91,28 @@ public class VirtualBlockInstanciator : Singleton<VirtualBlockInstanciator>
         blockGroup.Register();
 
         ghostGameObject.transform.SetParent(null);
+        ghostGameObject = null;
         RefreshGhostObject();
         TurnManager.instance.EndTurn();
     }
 
-
-    public void RefreshGhostObject()
+    public void SetSelectedCard(Card card)
     {
+        if (card == null)
+        {
+            Debug.LogError("Trying to set a null card");
+            return;
+        }
+        selectedCard = card;
+        RefreshGhostObject();
+    }
+
+
+    private void RefreshGhostObject()
+    {
+        if (ghostGameObject != null)
+            Destroy(ghostGameObject);
+
         // remove existing object
         foreach (Transform child in transform)
             Destroy(child.gameObject);
