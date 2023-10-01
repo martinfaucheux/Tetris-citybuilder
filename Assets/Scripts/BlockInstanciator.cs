@@ -18,12 +18,17 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
     void Start()
     {
         instantiatePosition = BlockContextManager.instance.GetContextPosition(transform.position);
-        RefreshGhostObject();
+        SetSelectedCard();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (
+            StateManager.currentState != GameState.TURN
+            || selectedCard == null
+        ) return;
+
         Vector2Int groupContextPosition = BlockContextManager.instance.GetContextPosition(blockGroup.transform.position);
 
         if (Time.time < _lastMoveTime + moveCooldown)
@@ -92,24 +97,14 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
 
         ghostGameObject.transform.SetParent(null);
         ghostGameObject = null;
-        RefreshGhostObject();
+        SetSelectedCard(selectedCard);
         TurnManager.instance.EndTurn();
     }
 
-    public void SetSelectedCard(Card card)
+    public void SetSelectedCard(Card card = null)
     {
-        if (card == null)
-        {
-            Debug.LogError("Trying to set a null card");
-            return;
-        }
         selectedCard = card;
-        RefreshGhostObject();
-    }
 
-
-    private void RefreshGhostObject()
-    {
         if (ghostGameObject != null)
             Destroy(ghostGameObject);
 
@@ -117,9 +112,15 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         foreach (Transform child in transform)
             Destroy(child.gameObject);
 
-        blockGroup = new BlockGroup(selectedCard);
-        ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
+        if (selectedCard == null)
+        {
+            blockGroup = null;
+            ghostGameObject = null;
+        }
+        else
+        {
+            blockGroup = new BlockGroup(selectedCard);
+            ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
+        }
     }
-
-
 }

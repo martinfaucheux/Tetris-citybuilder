@@ -20,11 +20,13 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public bool CheckCanAfford(ResourceGroup cost)
     {
-        bool canAfford = (staticResources - cost).isPositive();
+        bool canAfford = CanAfford(cost);
         if (!canAfford)
-            statusTextUI.SetText(ExplainLack(cost));
+            statusTextUI.SetText(ExplainLack(cost), ColorHolder.instance.red);
         return canAfford;
     }
+
+    public bool CanAfford(ResourceGroup cost) => (staticResources - cost).isPositive();
 
     public void Add(ResourceGroup resources) => permanentResources += resources;
 

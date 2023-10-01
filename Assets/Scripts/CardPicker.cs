@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class BlockGroupPicker : MonoBehaviour
+public enum PickerAction { Select, AddToDeck }
+
+public class CardPicker : MonoBehaviour
 {
+    public PickerAction pickerAction = PickerAction.Select;
     public Card card;
     public BoxCollider2D boxCollider;
     public TextMeshPro costText;
@@ -21,12 +24,15 @@ public class BlockGroupPicker : MonoBehaviour
         );
         newObj.transform.position = transform.position;
         SetColliderBounds(blockGroup);
-        costText.text = blockGroup.cost.ToString();
+        costText.text = card.cost.ToString();
     }
 
     private void OnMouseDown()
     {
-        SetSelectedCard();
+        if (pickerAction == PickerAction.Select)
+            SetSelectedCard();
+        else if (pickerAction == PickerAction.AddToDeck)
+            DraftManager.instance.AddToDeck(card);
     }
 
     public void SetSelectedCard() => BlockInstanciator.instance.SetSelectedCard(card);

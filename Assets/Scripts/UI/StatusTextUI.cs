@@ -12,22 +12,21 @@ public class StatusTextUI : MonoBehaviour
     {
         canvasGroup.alpha = 0;
     }
-    public void SetText(string text)
+
+
+    public void SetText(string text, Color color)
     {
         canvasGroup.alpha = 1;
-        this.text.text = text;
+        this.text.text = TextUtils.Colorize(text, color);
         FadeOut();
     }
+    public void SetText(string text) => SetText(text, Color.white);
 
     private void FadeOut()
     {
         LeanTween.cancel(ltDescrId);
-        LTDescr ltDescr = LeanTween.value(
-            gameObject,
-            (float val) => canvasGroup.alpha = val,
-            1,
-            0,
-            duration
+        LTDescr ltDescr = LeanTweenUtils.AnimateCanvasGroup(
+            canvasGroup, 0, duration
         ).setEaseInQuint();
         ltDescrId = ltDescr.id;
     }

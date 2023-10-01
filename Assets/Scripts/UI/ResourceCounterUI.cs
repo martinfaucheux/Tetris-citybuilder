@@ -21,13 +21,11 @@ public class ResourceCounterUI : MonoBehaviour
         {
             string symbol = upkeep.gold > 0 ? "+" : "-";
             Color color = upkeep.gold > 0 ? positiveColor : negativeColor;
-            goldText += Colorize($" {symbol}{upkeep.gold}", color);
+            goldText += TextUtils.Colorize($" {symbol}{Mathf.Abs(upkeep.gold)}", color);
         }
         this.goldText.text = goldText;
         foodText.text = $"Food: {resources.food}";
         peopleText.text = $"People: {resources.people}";
     }
-    public string Colorize(string text, Color color) => (
-        $"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>"
-    );
+
 }

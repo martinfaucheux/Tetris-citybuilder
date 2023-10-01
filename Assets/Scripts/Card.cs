@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -19,4 +20,8 @@ public class BlockPosition
 public class Card : ScriptableObject
 {
     public List<BlockPosition> blockPositions = new List<BlockPosition>();
+
+    public ResourceGroup cost => blockPositions
+        .Select(blockPosition => blockPosition.blockData.cost)
+        .Aggregate(new ResourceGroup(), (a, b) => a + b);
 }

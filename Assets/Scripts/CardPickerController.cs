@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockGroupPickerController : MonoBehaviour
+public class CardPickerController : MonoBehaviour
 {
-    BlockGroupPicker[] pickers;
-    int selectedPickerIdx = 0;
+    CardPicker[] pickers;
+    int selectedPickerIdx = -1;
 
     private void Start()
     {
-        pickers = transform.GetComponentsInChildren<BlockGroupPicker>();
-        pickers[0].SetSelectedCard();
+        pickers = transform.GetComponentsInChildren<CardPicker>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (StateManager.currentState == GameState.TURN && Input.GetKeyDown(KeyCode.Tab))
         {
             selectedPickerIdx = (selectedPickerIdx + 1) % pickers.Length;
             pickers[selectedPickerIdx].SetSelectedCard();
