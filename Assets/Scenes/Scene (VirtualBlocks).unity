@@ -928,6 +928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d5aacb052d89f4a8487d92cf55a536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickerPrefab: {fileID: 7956055114624259614, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
+  pickerMaxX: 5
 --- !u!1 &708094675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1299,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &911741523
 MonoBehaviour:
@@ -1587,6 +1589,10 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
+    - target: {fileID: 7956055114624259608, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 673031147}
     - target: {fileID: 7956055114624259614, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
       propertyPath: m_Name
       value: CardPicker (1)
@@ -1777,6 +1783,7 @@ GameObject:
   - component: {fileID: 1440337147}
   - component: {fileID: 1440337151}
   - component: {fileID: 1440337150}
+  - component: {fileID: 1440337152}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1962,6 +1969,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3ba92c22655954eae978d27fd4bb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1440337152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440337141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1be593d3a0ac9488e2ae2cedb586cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initCardCount: 3
+  cardList: []
 --- !u!1 &1547706952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2243,6 +2264,10 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 11400000, guid: 75fa294000a4674418f50c914e858d85, type: 2}
+    - target: {fileID: 7956055114624259608, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 673031147}
     - target: {fileID: 7956055114624259614, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
       propertyPath: m_Name
       value: CardPicker (2)
@@ -2300,6 +2325,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 673031146}
     m_Modifications:
+    - target: {fileID: 7956055114624259608, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 673031147}
     - target: {fileID: 7956055114624259614, guid: c47ec59c0887a764ca1dbd1196d25110, type: 3}
       propertyPath: m_Name
       value: CardPicker

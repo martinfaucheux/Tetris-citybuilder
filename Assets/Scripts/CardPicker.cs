@@ -11,13 +11,21 @@ public class CardPicker : MonoBehaviour
     public Card card;
     public BoxCollider2D boxCollider;
     public TextMeshPro costText;
-    public bool generateRandom;
+    public CardPickerController controller;
 
-    void Start()
+    private void OnMouseDown()
     {
-        if (generateRandom)
-            card = CardForge.instance.GenerateCard();
+        if (card == null) return;
 
+        if (pickerAction == PickerAction.Select)
+            SetSelectedCard();
+        else if (pickerAction == PickerAction.AddToDeck)
+            AddToDeck();
+    }
+
+    public void Initialize(Card card)
+    {
+        this.card = card;
         BlockGroup blockGroup = new BlockGroup(card);
         GameObject newObj = blockGroup.InstantiateGameObject(
             BlockContextManager.instance.GetContextPosition(transform.position)
@@ -27,17 +35,14 @@ public class CardPicker : MonoBehaviour
         costText.text = card.cost.ToString();
     }
 
-    private void OnMouseDown()
+    public void SetSelectedCard() => BlockInstanciator.instance.SetSelectedCard(card);
+    public void AddToDeck()
     {
-        if (pickerAction == PickerAction.Select)
-            SetSelectedCard();
-        else if (pickerAction == PickerAction.AddToDeck)
-            DraftManager.instance.AddToDeck(card);
+        DraftManager.instance.AddToDeck(card);
+        controller.RefreshPickers();
     }
 
-    public void SetSelectedCard() => BlockInstanciator.instance.SetSelectedCard(card);
-
-    public void SetColliderBounds(BlockGroup blockGroup)
+    private void SetColliderBounds(BlockGroup blockGroup)
     {
         Bounds bounds = blockGroup.GetBounds();
         boxCollider.size = bounds.size;

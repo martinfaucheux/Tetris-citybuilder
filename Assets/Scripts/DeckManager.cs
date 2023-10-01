@@ -5,7 +5,15 @@ using UnityEngine;
 
 public class DeckManager : Singleton<DeckManager>
 {
+    [Range(0, 10)]
+    public int initCardCount = 3;
     public List<Card> cardList = new List<Card>();
+
+    void Start()
+    {
+        for (int i = 0; i < initCardCount; i++)
+            AddCard(CardForge.instance.GenerateCard());
+    }
 
     public void AddCard(Card card) => cardList.Add(card);
 
