@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardForge : Singleton<CardForge>
@@ -9,6 +10,19 @@ public class CardForge : Singleton<CardForge>
     public Vector2Int blockCountRange = new Vector2Int(3, 5);
     public AnimationCurve blockCountDistribution;
     public static int MAX_RARITY = 4;
+    private Dictionary<int, List<BlockData>> _blockDataByRarity;
+    protected override void Awake()
+    {
+        base.Awake();
+        _blockDataByRarity = new Dictionary<int, List<BlockData>>();
+        foreach (BlockData blockData in blockDataList)
+        {
+            int rarity = blockData.rarity;
+            if (!_blockDataByRarity.ContainsKey(rarity))
+                _blockDataByRarity[rarity] = new List<BlockData>();
+            _blockDataByRarity[rarity].Add(blockData);
+        }
+    }
 
     public Card GenerateCard() => GridToCard(GenerateGrid());
 
@@ -49,21 +63,25 @@ public class CardForge : Singleton<CardForge>
 
     private BlockData GetRandomBlockData()
     {
-        int totalWeight = blockDataList.Sum(blockData => GetWeight(blockData));
+        int totalWeight = _blockDataByRarity.Sum(x => GetWeight(x.Key));
         int randomWeight = Random.Range(0, totalWeight);
         int weightSum = 0;
-        foreach (BlockData blockData in blockDataList)
+        int chosenRarity = _blockDataByRarity.Keys.Max();
+        foreach (int rarity in _blockDataByRarity.Keys.OrderByDescending(x => x))
         {
-            weightSum += GetWeight(blockData);
+            weightSum += GetWeight(rarity);
             if (randomWeight < weightSum)
             {
-                return blockData;
+                chosenRarity = rarity;
+                break;
             }
         }
-        return blockDataList[blockDataList.Count - 1];
+        List<BlockData> blockDataList = _blockDataByRarity[chosenRarity];
+        return blockDataList[Random.Range(0, blockDataList.Count)];
     }
 
-    public static int GetWeight(BlockData blockData) => (int)Mathf.Pow(MAX_RARITY + 1 - blockData.rarity, 2);
+    public static int GetWeight(BlockData blockData) => GetWeight(blockData.rarity);
+    public static int GetWeight(int rarity) => (int)Mathf.Pow(MAX_RARITY + 1 - rarity, 2);
 
     private int GetRandomBlockCount()
     {

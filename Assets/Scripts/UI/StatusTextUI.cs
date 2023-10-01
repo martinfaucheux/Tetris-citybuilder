@@ -6,6 +6,7 @@ public class StatusTextUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public CanvasGroup canvasGroup;
+    private int ltDescrId;
     public float duration = 3f;
     void Start()
     {
@@ -20,12 +21,14 @@ public class StatusTextUI : MonoBehaviour
 
     private void FadeOut()
     {
-        LeanTween.value(
+        LeanTween.cancel(ltDescrId);
+        LTDescr ltDescr = LeanTween.value(
             gameObject,
             (float val) => canvasGroup.alpha = val,
             1,
             0,
             duration
         ).setEaseInQuint();
+        ltDescrId = ltDescr.id;
     }
 }
