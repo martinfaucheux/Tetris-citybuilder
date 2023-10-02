@@ -24,7 +24,7 @@ public class StateManager : Singleton<StateManager>
     public static void SetState(GameState state, bool force = false)
     {
         GameState previousState = currentState;
-        if (state != currentState)
+        if (state != currentState || force)
         {
 
             currentState = state;

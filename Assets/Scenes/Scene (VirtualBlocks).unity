@@ -1972,6 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3ba92c22655954eae978d27fd4bb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentState: 0
   _defaultState: 1
 --- !u!114 &1440337152
 MonoBehaviour:
@@ -2291,6 +2292,7 @@ MonoBehaviour:
   pickerController: {fileID: 2147406260}
   oppacityCanvasGroup: {fileID: 0}
   statusTextUI: {fileID: 648889793}
+  autoDraft: 1
   onDraftStart:
     m_PersistentCalls:
       m_Calls: []

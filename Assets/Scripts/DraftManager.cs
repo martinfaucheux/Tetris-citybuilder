@@ -15,6 +15,7 @@ public class DraftManager : Singleton<DraftManager>
     public CardDraftPickerController pickerController;
     public CanvasGroup oppacityCanvasGroup;
     public StatusTextUI statusTextUI;
+    public bool autoDraft;
     public UnityEvent onDraftStart;
 
     void Start()
@@ -42,10 +43,22 @@ public class DraftManager : Singleton<DraftManager>
         SetStatusText();
 
         onDraftStart?.Invoke();
+
+        if (autoDraft)
+        {
+            for (int cardIndex = 0; cardIndex < draftOptionCount; cardIndex++)
+                AddToDeck(CardForge.instance.GenerateCard());
+        }
     }
 
     private void EndDraft()
     {
+        if (StateManager.currentState != GameState.DRAFT)
+        {
+            Debug.LogError("Can't end draft if not in draft");
+            return;
+        }
+
         Fade(0f);
         pickerController.ClearPickers();
         pickerController.gameObject.SetActive(false);
