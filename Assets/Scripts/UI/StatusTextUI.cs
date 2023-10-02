@@ -14,13 +14,14 @@ public class StatusTextUI : MonoBehaviour
     }
 
 
-    public void SetText(string text, Color color)
+    public void SetText(string text, Color color, bool fade = false)
     {
         canvasGroup.alpha = 1;
         this.text.text = TextUtils.Colorize(text, color);
-        FadeOut();
+        if (fade)
+            FadeOut();
     }
-    public void SetText(string text) => SetText(text, Color.white);
+    public void SetText(string text) => SetText(text, Color.white, false);
 
     private void FadeOut()
     {

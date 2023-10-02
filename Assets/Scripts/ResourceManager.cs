@@ -22,7 +22,7 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         bool canAfford = CanAfford(cost);
         if (!canAfford)
-            statusTextUI.SetText(ExplainLack(cost), ColorHolder.instance.red);
+            statusTextUI.SetText(ExplainLack(cost), ColorHolder.instance.red, true);
         return canAfford;
     }
 

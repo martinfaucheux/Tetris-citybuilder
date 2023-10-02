@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8614830374910130807}
   - component: {fileID: 3112723599264664389}
   - component: {fileID: 2709015480910974268}
+  - component: {fileID: 3012027442481864008}
   m_Layer: 0
   m_Name: Cost text
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 3112723599264664389}
   m_maskType: 0
+--- !u!225 &3012027442481864008
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780259657000585804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7956055114624259614
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +196,7 @@ GameObject:
   - component: {fileID: 7956055114624259615}
   - component: {fileID: 7956055114624259608}
   - component: {fileID: 7956055114624259609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CardPicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +234,7 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: b97063e89d2b7d3468a4349dabcbacf4, type: 2}
   boxCollider: {fileID: 7956055114624259609}
   costText: {fileID: 2709015480910974268}
-  generateRandom: 1
+  controller: {fileID: 0}
 --- !u!61 &7956055114624259609
 BoxCollider2D:
   m_ObjectHideFlags: 0
