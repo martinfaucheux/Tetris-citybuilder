@@ -18,6 +18,6 @@ MonoBehaviour:
   - position: {x: 0, y: 1}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
   - position: {x: -1, y: 0}
-    blockData: {fileID: 11400000, guid: 14e22976cbd6a2742bc3970e4e02bd9c, type: 2}
+    blockData: {fileID: 11400000, guid: f459ca56b3ffd7c489ad76c2eed93981, type: 2}
   - position: {x: 1, y: 1}
-    blockData: {fileID: 11400000, guid: 14e22976cbd6a2742bc3970e4e02bd9c, type: 2}
+    blockData: {fileID: 11400000, guid: f459ca56b3ffd7c489ad76c2eed93981, type: 2}

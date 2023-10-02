@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da04455e7f1435b44b9b7d7c9d2985cc, type: 3}
-  m_Name: FieldBlockData
+  m_Script: {fileID: 11500000, guid: 1f756dadc0429554abbb943f2db0028d, type: 3}
+  m_Name: House
   m_EditorClassIdentifier: 
-  blockName: Field
+  blockName: House
   description: 
   cost:
-    gold: 5
-    food: 1
-    people: 1
-  rarity: 2
-  prefab: {fileID: 8540854704036334866, guid: 663f7b3439ca98346993662c2162af5b, type: 3}
-  baseFoodValue: 3
-  skyFoodBonus: 5
+    gold: 10
+    food: 3
+    people: 0
+  rarity: 3
+  prefab: {fileID: 8540854704036334866, guid: 8cf3023177fc5244f8929f0f749bd4e6, type: 3}
+  peopleAmount: 3
+  tax: 3

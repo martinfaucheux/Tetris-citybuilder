@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Block
@@ -38,4 +39,10 @@ public abstract class Block
 
         return description;
     }
+
+    protected static Dictionary<Vector2Int, int> GetDefaultAura(int aura) => (
+            MatrixUtils.GetNeighbors_8()
+            .Select(v => new KeyValuePair<Vector2Int, int>(v, aura))
+            .ToDictionary(x => x.Key, x => x.Value)
+        );
 }

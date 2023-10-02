@@ -9,21 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f159fe6e30f9eb548bc167178244cbf9, type: 3}
-  m_Name: RockBlockData
+  m_Script: {fileID: 11500000, guid: fa8fa0cff0e5fc24c8b1dcdcacf44950, type: 3}
+  m_Name: Tree
   m_EditorClassIdentifier: 
-  blockName: Rock
+  blockName: Tree
   description: 
   cost:
-    gold: 1
+    gold: 2
     food: 0
     people: 0
-  prefab: {fileID: 8540854704036334866, guid: bc8b409feda792d4582ee6a2c3bfb6b8, type: 3}
-  product:
+  rarity: 1
+  prefab: {fileID: 8540854704036334866, guid: fa72cc91305b9a04290c6819c7ab5e89, type: 3}
+  baseProduct:
     gold: 0
     food: 0
     people: 0
-  permanentProduct:
+  bonusProduct:
     gold: 0
     food: 0
     people: 0
+  baseSatisfaction: 1
+  bonus: 3
+  emptyNeighbors:
+  - {x: 0, y: 1}

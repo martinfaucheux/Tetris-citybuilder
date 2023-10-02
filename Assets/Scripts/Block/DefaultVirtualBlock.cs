@@ -9,12 +9,7 @@ public class DefaultBlock : Block
 
     public override ResourceGroup GetProduct() => ((DefaultBlockData)data).product;
     public override ResourceGroup GetPermanentProduct() => ((DefaultBlockData)data).permanentProduct;
-    public override Dictionary<Vector2Int, int> GetSatisfactionAura()
-    {
-        return (
-            MatrixUtils.GetNeighbors_8()
-            .Select(v => new KeyValuePair<Vector2Int, int>(v, ((DefaultBlockData)data).satisfactionAura))
-            .ToDictionary(x => x.Key, x => x.Value)
-        );
-    }
+    public override Dictionary<Vector2Int, int> GetSatisfactionAura() => (
+        GetDefaultAura(((DefaultBlockData)data).satisfactionAura)
+    );
 }
