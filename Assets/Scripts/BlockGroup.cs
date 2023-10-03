@@ -78,8 +78,9 @@ public class BlockGroup
             block.Move(contextPosition + relativePosition);
             Vector3 realPosition = BlockContextManager.instance.GetRealWorldPosition(contextPosition + relativePosition);
 
-            GameObject newObj = GameObject.Instantiate(block.data.prefab, realPosition, Quaternion.identity, blockGameObject.transform);
-            BlockHolder blockHolder = newObj.GetComponent<BlockHolder>();
+            GameObject newBlockObj = GameObject.Instantiate(block.data.prefab, realPosition, Quaternion.identity, blockGameObject.transform);
+            newBlockObj.name = block.data.blockName;
+            BlockHolder blockHolder = newBlockObj.GetComponent<BlockHolder>();
             block.blockHolder = blockHolder;
             blockHolder.block = block;
             blockHolder.blockData = block.data;
