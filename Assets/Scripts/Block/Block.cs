@@ -26,17 +26,13 @@ public abstract class Block
     public virtual string GetDescription()
     {
         string description = "";
-        if (data.description != "") description += data.description + "\n";
+        if (data.description != "") description += data.description + "\n\n";
 
         ResourceGroup product = GetProduct();
         if (!product.IsZero()) description += $"Product: {product}\n";
 
         ResourceGroup permanentProduct = GetPermanentProduct();
         if (!permanentProduct.IsZero()) description += $"Yield: {permanentProduct}\n";
-
-        int satisfaction = GetSatisfaction();
-        if (satisfaction != 0) description += $"Satisfaction: {satisfaction}\n";
-
         return description;
     }
 

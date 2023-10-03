@@ -9,26 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8fa0cff0e5fc24c8b1dcdcacf44950, type: 3}
-  m_Name: Tree
+  m_Script: {fileID: 11500000, guid: f159fe6e30f9eb548bc167178244cbf9, type: 3}
+  m_Name: Clay
   m_EditorClassIdentifier: 
-  blockName: Tree
+  blockName: Clay
   description: 
   cost:
-    gold: 3
+    gold: 1
     food: 0
     people: 0
-  rarity: 1
-  prefab: {fileID: 8540854704036334866, guid: fa72cc91305b9a04290c6819c7ab5e89, type: 3}
-  baseProduct:
+  rarity: 0
+  prefab: {fileID: 8540854704036334866, guid: 485a32989c8d02445aa840b70f0d0beb, type: 3}
+  product:
     gold: 0
     food: 0
     people: 0
-  bonusProduct:
+  permanentProduct:
     gold: 0
     food: 0
     people: 0
-  baseSatisfaction: 1
-  bonus: 3
-  emptyNeighbors:
-  - {x: 0, y: 1}
+  satisfactionAura: 0

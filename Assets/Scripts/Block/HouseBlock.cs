@@ -15,4 +15,12 @@ public class HouseBlock : Block
     }
 
     public override ResourceGroup GetPermanentProduct() => new ResourceGroup(gold: -((HouseBlockData)data).tax);
+
+    public override string GetDescription()
+    {
+        string description = base.GetDescription();
+        int satisfaction = GetSatisfaction();
+        if (satisfaction != 0) description += $"Satisfaction: {satisfaction}\n";
+        return description;
+    }
 }
