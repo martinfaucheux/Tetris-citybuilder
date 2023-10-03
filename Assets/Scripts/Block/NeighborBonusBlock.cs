@@ -30,7 +30,7 @@ public class NeighborBonusBlock : Block
 
         int count = 0;
         BlockContext context = BlockContextManager.instance.currentContext;
-        foreach (Vector2Int offset in MatrixUtils.GetNeighbors_8())
+        foreach (Vector2Int offset in GetNeighborPositions())
         {
             Block block = context.GetBlockAtPosition(position + offset);
             if (block != null && validBlockNames.Contains(block.data.blockName))
@@ -56,5 +56,18 @@ public class NeighborBonusBlock : Block
             description += computedBonusAuraValue == 0 ? "No satisfaction bonus" : $"Satisfaction bonus: {computedBonusAuraValue}\n";
         }
         return description;
+    }
+
+    private List<Vector2Int> GetNeighborPositions()
+    {
+        switch (((NeighborBonusBlockData)data).proximityType)
+        {
+            case ProximityType._8Blocks:
+                return MatrixUtils.GetNeighbors_8();
+            case ProximityType._4Blocks:
+                return MatrixUtils.GetNeighbors_4();
+            default:
+                throw new System.Exception("Invalid proximity type");
+        }
     }
 }
