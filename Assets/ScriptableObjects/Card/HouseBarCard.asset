@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c07bb1e05dc955342a5165fb155b0fc4, type: 3}
-  m_Name: BarCard
+  m_Name: HouseBarCard
   m_EditorClassIdentifier: 
   blockPositions:
   - position: {x: -1, y: 0}

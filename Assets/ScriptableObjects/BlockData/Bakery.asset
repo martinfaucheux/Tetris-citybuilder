@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f159fe6e30f9eb548bc167178244cbf9, type: 3}
-  m_Name: Market
+  m_Name: Bakery
   m_EditorClassIdentifier: 
   blockName: Market
-  description: Yield 3 Gold per day
+  description: 
   cost:
-    gold: 10
-    food: 1
+    gold: 13
+    food: 2
     people: 1
   rarity: 3
-  prefab: {fileID: 8540854704036334866, guid: 4d6dbdfd33ebfa0488de3c6e478e633c, type: 3}
+  prefab: {fileID: 8540854704036334866, guid: 40c680fdd23e63b4e8f1eb550ebfeb5a, type: 3}
   product:
     gold: 0
     food: 0
     people: 0
   permanentProduct:
-    gold: 3
+    gold: 4
     food: 0
     people: 0
-  satisfactionAura: 0
+  satisfactionAura: 1

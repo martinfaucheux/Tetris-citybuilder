@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HouseBlockData", menuName = "ScriptableObjects / BlockData / Default")]
+[CreateAssetMenu(fileName = "DefaultBlockData", menuName = "ScriptableObjects / BlockData / Default")]
 public class DefaultBlockData : BlockData
 {
     public ResourceGroup product;

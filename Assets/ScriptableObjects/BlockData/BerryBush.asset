@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f159fe6e30f9eb548bc167178244cbf9, type: 3}
-  m_Name: Market
+  m_Name: BerryBush
   m_EditorClassIdentifier: 
-  blockName: Market
-  description: Yield 3 Gold per day
+  blockName: Berry Bush
+  description: 
   cost:
-    gold: 10
-    food: 1
+    gold: 5
+    food: 0
     people: 1
-  rarity: 3
-  prefab: {fileID: 8540854704036334866, guid: 4d6dbdfd33ebfa0488de3c6e478e633c, type: 3}
+  rarity: 1
+  prefab: {fileID: 0}
   product:
     gold: 0
-    food: 0
+    food: 4
     people: 0
   permanentProduct:
-    gold: 3
+    gold: 0
     food: 0
     people: 0
   satisfactionAura: 0

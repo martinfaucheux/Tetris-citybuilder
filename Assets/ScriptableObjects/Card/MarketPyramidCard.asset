@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c07bb1e05dc955342a5165fb155b0fc4, type: 3}
-  m_Name: TetrisCard
+  m_Name: MarketPyramidCard
   m_EditorClassIdentifier: 
   blockPositions:
   - position: {x: 0, y: 0}
+    blockData: {fileID: 11400000, guid: 521f973231f1d2f41a2d0ee3c2a31ea9, type: 2}
+  - position: {x: -1, y: 0}
+    blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
+  - position: {x: 1, y: 0}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
   - position: {x: 0, y: 1}
     blockData: {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
-  - position: {x: -1, y: 0}
-    blockData: {fileID: 11400000, guid: f459ca56b3ffd7c489ad76c2eed93981, type: 2}
-  - position: {x: 1, y: 1}
-    blockData: {fileID: 11400000, guid: f459ca56b3ffd7c489ad76c2eed93981, type: 2}
