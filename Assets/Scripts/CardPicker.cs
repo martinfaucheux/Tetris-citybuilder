@@ -13,6 +13,12 @@ public class CardPicker : MonoBehaviour
 
     public void Initialize(Card card)
     {
+        if (card == null)
+        {
+            Debug.LogError("Card is null");
+            return;
+        }
+
         if (instantiatedObject != null)
             Destroy(instantiatedObject);
 

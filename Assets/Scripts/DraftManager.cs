@@ -13,7 +13,6 @@ public class DraftManager : Singleton<DraftManager>
     [field: SerializeField]
     public int remainingDraftCount { get; private set; } = 0;
     public CardDraftPickerController pickerController;
-    public CanvasGroup oppacityCanvasGroup;
     public StatusTextUI statusTextUI;
     public bool autoDraft;
     public UnityEvent onDraftStart;
@@ -37,7 +36,6 @@ public class DraftManager : Singleton<DraftManager>
     private void StartDraft() => StartDraft(totalDraftCount);
     private void StartDraft(int drafCount)
     {
-        Fade(1f);
         pickerController.gameObject.SetActive(true);
         remainingDraftCount = drafCount;
         SetStatusText();
@@ -49,20 +47,6 @@ public class DraftManager : Singleton<DraftManager>
             for (int cardIndex = 0; cardIndex < draftOptionCount; cardIndex++)
                 AddToDeck(CardForge.instance.GenerateCard());
         }
-    }
-
-    private void EndDraft()
-    {
-        if (StateManager.currentState != GameState.DRAFT)
-        {
-            Debug.LogError("Can't end draft if not in draft");
-            return;
-        }
-
-        Fade(0f);
-        pickerController.ClearPickers();
-        pickerController.gameObject.SetActive(false);
-        StateManager.SetState(GameState.TURN);
     }
 
     public void AddToDeck(Card card)
@@ -87,10 +71,18 @@ public class DraftManager : Singleton<DraftManager>
             EndDraft();
     }
 
-    private void Fade(float targetAlpha)
+    private void EndDraft()
     {
-        if (oppacityCanvasGroup != null)
-            LeanTweenUtils.AnimateCanvasGroup(oppacityCanvasGroup, targetAlpha, 0.5f);
+        if (StateManager.currentState != GameState.DRAFT)
+        {
+            Debug.LogError("Can't end draft if not in draft");
+            return;
+        }
+
+        DeckManager.instance.ShuffleDraw();
+        pickerController.ClearPickers();
+        pickerController.gameObject.SetActive(false);
+        StateManager.SetState(GameState.TURN);
     }
 
     public void SetStatusText()

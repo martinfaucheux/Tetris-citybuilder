@@ -42,7 +42,7 @@ public abstract class BaseCardPickerController : MonoBehaviour
             }
         }
     }
-    protected void RefreshPickers()
+    public void RefreshPickers()
     {
         int cardCount = GetCardCount();
         if (pickers.Count > cardCount)
@@ -90,6 +90,5 @@ public abstract class BaseCardPickerController : MonoBehaviour
     {
         foreach (CardPicker picker in pickers)
             Destroy(picker.gameObject);
-
     }
 }

@@ -7,21 +7,66 @@ using UnityEngine;
 public class DeckManager : Singleton<DeckManager>
 {
     [Range(0, 10)]
-    public int initCardCount = 3;
-    public List<Card> cardList = new List<Card>();
+    public int handCardCount = 3;
+    public List<Card> drawCards = new List<Card>();
+    public List<Card> handCards = new List<Card>();
+    public List<Card> discardCards = new List<Card>();
     public event Action onDeckChanged;
 
-    void Start()
+    public void RefreshHand()
     {
-        for (int i = 0; i < initCardCount; i++)
-            AddCard(CardForge.instance.GenerateCard());
+        DiscardHand();
+        DrawHand();
+    }
+
+    public void DrawHand()
+    {
+        for (int i = 0; i < handCardCount; i++)
+            Draw();
+    }
+
+    public void Draw()
+    {
+        if (drawCards.Count == 0)
+            ShuffleDiscardIntoDraw();
+
+        Card card = drawCards[0];
+        drawCards.RemoveAt(0);
+        handCards.Add(card);
+    }
+
+    public void Discard(Card card)
+    {
+        drawCards.Remove(card);
+        discardCards.Add(card);
+    }
+
+    public void DiscardHand()
+    {
+        foreach (Card card in handCards)
+            Discard(card);
+
+        handCards.Clear();
+        onDeckChanged?.Invoke();
+    }
+
+    public void ShuffleDiscardIntoDraw()
+    {
+        drawCards.AddRange(discardCards);
+        discardCards.Clear();
+        ShuffleDraw();
+    }
+
+    public void ShuffleDraw()
+    {
+        drawCards = drawCards.OrderBy(x => UnityEngine.Random.value).ToList();
     }
 
     public void AddCard(Card card)
     {
-        cardList.Add(card);
+        drawCards.Add(card);
         onDeckChanged?.Invoke();
     }
 
-    public bool CanAffordAny() => cardList.Any(card => ResourceManager.instance.CanAfford(card.cost));
+    public bool CanAffordAny() => drawCards.Any(card => ResourceManager.instance.CanAfford(card.cost));
 }

@@ -7,17 +7,6 @@ public class CardSelectorController : BaseCardPickerController
 {
     int selectedPickerIdx = -1;
 
-    protected override void Start()
-    {
-        base.Start();
-        DeckManager.instance.onDeckChanged += RefreshPickers;
-    }
-
-    void OnDestroy()
-    {
-        DeckManager.instance.onDeckChanged -= RefreshPickers;
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -36,15 +25,29 @@ public class CardSelectorController : BaseCardPickerController
         }
     }
 
-    protected override int GetCardCount() => DeckManager.instance.cardList.Count;
+    protected override int GetCardCount() => DeckManager.instance.handCards.Count;
 
     protected override Card GetCard(int index)
     {
-        return DeckManager.instance.cardList[index];
+        return DeckManager.instance.handCards[index];
     }
 
     public override void PickCard(Card card)
     {
         BlockInstanciator.instance.SetSelectedCard(card);
+    }
+
+    public void SelectFirst()
+    {
+        if (pickers.Count > 0)
+        {
+            selectedPickerIdx = 0;
+            PickCard(pickers[0].card);
+        }
+        else
+        {
+            selectedPickerIdx = -1;
+            PickCard(null);
+        }
     }
 }

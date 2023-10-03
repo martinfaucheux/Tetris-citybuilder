@@ -1797,6 +1797,7 @@ GameObject:
   - component: {fileID: 1440337152}
   - component: {fileID: 1440337150}
   - component: {fileID: 1440337147}
+  - component: {fileID: 1440337153}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1904,6 +1905,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1440337152}
+        m_TargetAssemblyTypeName: DeckManager, Assembly-CSharp
+        m_MethodName: RefreshHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 673031147}
+        m_TargetAssemblyTypeName: BaseCardPickerController, Assembly-CSharp
+        m_MethodName: RefreshPickers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 673031147}
+        m_TargetAssemblyTypeName: CardSelectorController, Assembly-CSharp
+        m_MethodName: SelectFirst
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1440337147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,8 +2033,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1be593d3a0ac9488e2ae2cedb586cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initCardCount: 0
-  cardList: []
+  handCardCount: 3
+  drawCards:
+  - {fileID: 11400000, guid: b97063e89d2b7d3468a4349dabcbacf4, type: 2}
+  - {fileID: 11400000, guid: 75fa294000a4674418f50c914e858d85, type: 2}
+  - {fileID: 11400000, guid: 75fa294000a4674418f50c914e858d85, type: 2}
+  - {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
+  - {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
+  handCards: []
+  discardCards: []
+--- !u!114 &1440337153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440337141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bd7da25a8128744be43d000e7743f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  onKeyPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1440337145}
+        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+        m_MethodName: EndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1547706952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,9 +2372,8 @@ MonoBehaviour:
   <totalDraftCount>k__BackingField: 3
   <remainingDraftCount>k__BackingField: 0
   pickerController: {fileID: 2147406260}
-  oppacityCanvasGroup: {fileID: 0}
   statusTextUI: {fileID: 648889793}
-  autoDraft: 1
+  autoDraft: 0
   onDraftStart:
     m_PersistentCalls:
       m_Calls: []
