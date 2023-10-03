@@ -8,7 +8,7 @@ public class BlockHolder : MonoBehaviour
     [Tooltip("This is mostly for debugging purposes")]
     public BlockData blockData;
 
-    private void Update()
+    private void LateUpdate()
     {
         transform.rotation = Quaternion.identity;
     }

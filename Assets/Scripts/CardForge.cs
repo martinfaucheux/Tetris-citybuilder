@@ -4,12 +4,15 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum RandomizerVersion { V1, V2 }
+
 public class CardForge : Singleton<CardForge>
 {
     public List<BlockData> blockDataList = new List<BlockData>();
     public Vector2Int blockCountRange = new Vector2Int(3, 5);
     public AnimationCurve blockCountDistribution;
     public static int MAX_RARITY = 4;
+    public RandomizerVersion randomizerVersion = RandomizerVersion.V2;
     private Dictionary<int, List<BlockData>> _blockDataByRarity;
     protected override void Awake()
     {
@@ -62,6 +65,33 @@ public class CardForge : Singleton<CardForge>
     }
 
     private BlockData GetRandomBlockData()
+    {
+        switch (randomizerVersion)
+        {
+            case RandomizerVersion.V1:
+                return GetRandomBlockDataV1();
+            case RandomizerVersion.V2:
+                return GetRandomBlockDataV2();
+            default:
+                throw new System.Exception("Unknown randomizer version");
+        }
+    }
+
+    private BlockData GetRandomBlockDataV1()
+    {
+        int totalWeight = blockDataList.Sum(blockData => GetWeight(blockData));
+        int randomWeight = Random.Range(0, totalWeight);
+        int weightSum = 0;
+        foreach (BlockData blockData in blockDataList)
+        {
+            weightSum += GetWeight(blockData);
+            if (randomWeight < weightSum)
+                return blockData;
+        }
+        return blockDataList[blockDataList.Count - 1];
+    }
+
+    private BlockData GetRandomBlockDataV2()
     {
         int totalWeight = _blockDataByRarity.Sum(x => GetWeight(x.Key));
         int randomWeight = Random.Range(0, totalWeight);

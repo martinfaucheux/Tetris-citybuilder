@@ -673,6 +673,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9195ef2325162a149bf099dd6f2904dc, type: 2}
   - {fileID: 11400000, guid: 4eb12ea51d448234db4532e570ac0293, type: 2}
   - {fileID: 11400000, guid: e3abd49ce9b550b4dac9de2d7ba4881e, type: 2}
+  - {fileID: 11400000, guid: d4777dd9028dde54a9d963f1040ee7c9, type: 2}
   blockCountRange: {x: 3, y: 5}
   blockCountDistribution:
     serializedVersion: 2
@@ -707,6 +708,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  randomizerVersion: 1
 --- !u!4 &564641520
 Transform:
   m_ObjectHideFlags: 0

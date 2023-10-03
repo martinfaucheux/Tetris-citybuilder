@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1022d9b3a914f3a40bb16fe9e13e37ba, type: 3}
-  m_Name: Aquarium
+  m_Name: Mine
   m_EditorClassIdentifier: 
-  blockName: Aquarium
-  description: 
+  blockName: Mine
+  description: +1 Gold for each adjacent rock
   cost:
-    gold: 5
+    gold: 6
     food: 0
     people: 1
-  rarity: 2
-  prefab: {fileID: 8540854704036334866, guid: 25118430640f4f447905c2e6ccc3ab7f, type: 3}
+  rarity: 4
+  prefab: {fileID: 8540854704036334866, guid: 050160235a8ab944db4f9b2315df0724, type: 3}
   baseProduct:
     gold: 0
-    food: 2
+    food: 0
     people: 0
   bonusProduct:
-    gold: 0
-    food: 1
+    gold: 1
+    food: 0
     people: 0
   baseSatisfaction: 0
   bonusSatisfaction: 0
   blockDataList:
-  - {fileID: 11400000}
-  proximityType: 1
+  - {fileID: 11400000, guid: f897047d251d49b479f663e86bab533e, type: 2}
+  proximityType: 0
   divider: 1
   maxStack: 8
