@@ -16,7 +16,7 @@ public class ResourceCounterUI : MonoBehaviour
         ResourceGroup resources = ResourceManager.instance.staticResources;
         ResourceGroup upkeep = ResourceManager.instance.GetUpkeep();
 
-        string goldText = $"Gold: {resources.gold}";
+        string goldText = $"<sprite name=\"Gold\"> {resources.gold}";
         if (upkeep.gold != 0)
         {
             string symbol = upkeep.gold > 0 ? "+" : "-";
@@ -24,8 +24,8 @@ public class ResourceCounterUI : MonoBehaviour
             goldText += TextUtils.Colorize($" {symbol}{Mathf.Abs(upkeep.gold)}", color);
         }
         this.goldText.text = goldText;
-        foodText.text = $"Food: {resources.food}";
-        peopleText.text = $"People: {resources.people}";
+        foodText.text = $"<sprite name=\"Food\"> {resources.food}";
+        peopleText.text = $"<sprite name=\"People\"> {resources.people}";
     }
 
 }

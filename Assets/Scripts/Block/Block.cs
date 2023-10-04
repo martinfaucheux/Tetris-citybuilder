@@ -29,10 +29,10 @@ public abstract class Block
         if (data.description != "") description += data.description + "\n\n";
 
         ResourceGroup product = GetProduct();
-        if (!product.IsZero()) description += $"Product: {product}\n";
+        if (!product.IsZero()) description += $"Product: {product.ToStringIcon()}\n";
 
         ResourceGroup permanentProduct = GetPermanentProduct();
-        if (!permanentProduct.IsZero()) description += $"Yield: {permanentProduct}\n";
+        if (!permanentProduct.IsZero()) description += $"Yield: {permanentProduct.ToStringIcon()}\n";
         return description;
     }
 

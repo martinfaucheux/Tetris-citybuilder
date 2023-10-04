@@ -47,7 +47,7 @@ public class NeighborBonusBlock : Block
         if (!data.bonusProduct.IsZero())
         {
             ResourceGroup computedBonusProduct = GetBonusProduct();
-            description += computedBonusProduct.IsZero() ? "No product bonus" : $"Product bonus: {computedBonusProduct}\n";
+            description += computedBonusProduct.IsZero() ? "No product bonus" : $"Product bonus: {computedBonusProduct.ToStringIcon()}\n";
         }
 
         if (data.bonusSatisfaction != 0)

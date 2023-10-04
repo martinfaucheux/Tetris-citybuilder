@@ -59,5 +59,14 @@ public struct ResourceGroup
         return result.TrimEnd(',', ' ');
     }
 
+    public string ToStringIcon()
+    {
+        string result = "";
+        if (gold != 0) result += $"<sprite name=\"Gold\"> {gold} ";
+        if (food != 0) result += $"<sprite name=\"Food\"> {food} ";
+        if (people != 0) result += $"<sprite name=\"People\"> {people} ";
+        return result.TrimEnd(' ');
+    }
+
     public bool IsZero() => gold == 0 && food == 0 && people == 0;
 }

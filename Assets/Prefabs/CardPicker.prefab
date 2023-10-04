@@ -101,7 +101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Gold: 0, Food: 0, People: 0'
+  m_text: <sprite name="Gold"> 0 <sprite name="Food"> 0 <sprite name="People"> 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -235,6 +235,7 @@ MonoBehaviour:
   boxCollider: {fileID: 7956055114624259609}
   costText: {fileID: 2709015480910974268}
   controller: {fileID: 0}
+  instantiatedObject: {fileID: 0}
 --- !u!61 &7956055114624259609
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class CardPicker : MonoBehaviour
         );
         instantiatedObject.transform.position = transform.position;
         SetColliderBounds(blockGroup);
-        costText.text = card.cost.ToString();
+        costText.text = card.cost.ToStringIcon();
     }
 
     private void OnDestroy()
