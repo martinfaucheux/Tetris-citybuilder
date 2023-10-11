@@ -488,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 3.59, z: -10}
+  m_LocalPosition: {x: 0.5, y: 3.59, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -945,7 +945,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673031145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -3.17, z: 0}
+  m_LocalPosition: {x: 0.5, y: -3.17, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -972,6 +972,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  incrementalAngle: 10
 --- !u!1 &708094675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2813,7 @@ MonoBehaviour:
   <remainingDraftCount>k__BackingField: 0
   pickerController: {fileID: 2147406260}
   statusTextUI: {fileID: 648889793}
-  autoDraft: 0
+  autoDraft: 1
   onNewDraft:
     m_PersistentCalls:
       m_Calls:

@@ -71,11 +71,12 @@ public abstract class BaseCardPickerController : MonoBehaviour
                 cardPicker = pickers[cardIndex];
             }
             cardPicker.transform.position = GetPickerPosition(cardIndex);
+            cardPicker.transform.rotation = GetPickerRotation(cardIndex);
             cardPicker.Initialize(card);
         }
     }
 
-    private Vector3 GetPickerPosition(int cardIndex)
+    protected virtual Vector3 GetPickerPosition(int cardIndex)
     {
         int cardCount = GetCardCount();
         if (cardCount == 1)
@@ -84,6 +85,8 @@ public abstract class BaseCardPickerController : MonoBehaviour
         float disp = pickerMaxX * 2 * ((float)cardIndex / (cardCount - 1) - 0.5f);
         return transform.position + new Vector3(disp, 0f, 0f);
     }
+
+    protected virtual Quaternion GetPickerRotation(int cardIndex) => Quaternion.identity;
 
     public void ClearPickers()
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardSelectorController : BaseCardPickerController
 {
     int selectedPickerIdx = -1;
+    public float incrementalAngle = 1f;
 
     protected override void Start()
     {
@@ -70,5 +71,34 @@ public class CardSelectorController : BaseCardPickerController
             selectedPickerIdx = -1;
             PickCard(null);
         }
+    }
+
+    protected override Quaternion GetPickerRotation(int cardIndex)
+    {
+        return Quaternion.Euler(0, 0, -GetCardAngle(cardIndex));
+    }
+
+    protected override Vector3 GetPickerPosition(int cardIndex)
+    {
+        int cardCount = GetCardCount();
+        if (cardCount == 1)
+            return transform.position;
+
+
+        float maxCircleAngle = 10 * incrementalAngle;
+        float circleRadius = pickerMaxX / Mathf.Sin(maxCircleAngle / 2f);
+
+        float radAngle = GetCardAngle(cardIndex) * Mathf.Deg2Rad;
+        float z = (float)cardIndex / cardCount;
+        return transform.position + new Vector3(0, 0, z) + circleRadius * new Vector3(-Mathf.Sin(radAngle), -Mathf.Cos(radAngle) + 1, 0);
+
+    }
+
+    private float GetCardAngle(int cardIndex)
+    {
+        int cardCount = GetCardCount();
+        if (cardCount == 1)
+            return 0f;
+        return incrementalAngle * ((float)cardIndex / (cardCount - 1) - 0.5f);
     }
 }

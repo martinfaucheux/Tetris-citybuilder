@@ -8,8 +8,14 @@ public class BlockHolder : MonoBehaviour
     [Tooltip("This is mostly for debugging purposes")]
     public BlockData blockData;
 
+    private bool isPlaced => (
+        BlockContextManager.instance.currentContext
+        .blockRegistry.ContainsKey(block)
+    );
+
     private void LateUpdate()
     {
-        transform.rotation = Quaternion.identity;
+        if (isPlaced)
+            transform.rotation = Quaternion.identity;
     }
 }
