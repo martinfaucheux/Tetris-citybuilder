@@ -97,8 +97,10 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
 
         ghostGameObject.transform.SetParent(null);
         ghostGameObject = null;
-        SetSelectedCard(selectedCard);
-        TurnManager.instance.EndTurn();
+
+        DeckManager.instance.Discard(selectedCard);
+        SetSelectedCard(DeckManager.instance.GetFirstHandCard());
+        TurnManager.instance.StartNewAction();
     }
 
     public void SetSelectedCard(Card card = null)

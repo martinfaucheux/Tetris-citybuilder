@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Sniglet-ExtraBold SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 225301773
   material: {fileID: 4095000054183512092}
-  materialHashCode: 0
+  materialHashCode: 293148301
   m_Version: 1.1.0
   m_SourceFontFileGUID: 746b7f8dd84780e43bb53576ec2d2350
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 746b7f8dd84780e43bb53576ec2d2350, type: 3}

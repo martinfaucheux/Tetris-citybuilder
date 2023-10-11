@@ -13,6 +13,5 @@ public class CardDraftPickerController : BaseCardPickerController
     public override void PickCard(Card card)
     {
         DraftManager.instance.AddToDeck(card);
-        RefreshPickers();
     }
 }

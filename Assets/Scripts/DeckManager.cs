@@ -37,15 +37,13 @@ public class DeckManager : Singleton<DeckManager>
 
     public void Discard(Card card)
     {
-        drawCards.Remove(card);
+        handCards.Remove(card);
         discardCards.Add(card);
     }
 
     public void DiscardHand()
     {
-        foreach (Card card in handCards)
-            Discard(card);
-
+        discardCards.AddRange(handCards);
         handCards.Clear();
         onDeckChanged?.Invoke();
     }
@@ -62,6 +60,15 @@ public class DeckManager : Singleton<DeckManager>
         drawCards = drawCards.OrderBy(x => UnityEngine.Random.value).ToList();
     }
 
+    public void Reset()
+    {
+        drawCards.AddRange(discardCards);
+        drawCards.AddRange(handCards);
+        ShuffleDraw();
+        discardCards.Clear();
+        handCards.Clear();
+    }
+
     public void AddCard(Card card)
     {
         drawCards.Add(card);
@@ -69,4 +76,6 @@ public class DeckManager : Singleton<DeckManager>
     }
 
     public bool CanAffordAny() => drawCards.Any(card => ResourceManager.instance.CanAfford(card.cost));
+
+    public Card GetFirstHandCard() => handCards.Any() ? handCards[0] : null;
 }

@@ -2029,30 +2029,6 @@ MonoBehaviour:
   onTurnStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1440337148}
-        m_TargetAssemblyTypeName: SatisfactionManager, Assembly-CSharp
-        m_MethodName: ComputeGrid
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1440337144}
-        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
-        m_MethodName: AddPermanentProduct
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1440337144}
         m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
         m_MethodName: CalculateCurrentResources
@@ -2077,9 +2053,60 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1440337144}
+        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
+        m_MethodName: AddPermanentProduct
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1440337152}
         m_TargetAssemblyTypeName: DeckManager, Assembly-CSharp
         m_MethodName: RefreshHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNewPlayerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1440337148}
+        m_TargetAssemblyTypeName: SatisfactionManager, Assembly-CSharp
+        m_MethodName: ComputeGrid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1440337144}
+        m_TargetAssemblyTypeName: ResourceManager, Assembly-CSharp
+        m_MethodName: CalculateCurrentResources
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 233360323}
+        m_TargetAssemblyTypeName: ResourceCounterUI, Assembly-CSharp
+        m_MethodName: Refresh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2679,10 +2706,22 @@ MonoBehaviour:
   <remainingDraftCount>k__BackingField: 0
   pickerController: {fileID: 2147406260}
   statusTextUI: {fileID: 648889793}
-  autoDraft: 0
+  autoDraft: 1
   onDraftStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2147406260}
+        m_TargetAssemblyTypeName: BaseCardPickerController, Assembly-CSharp
+        m_MethodName: RefreshPickers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &2020715575
 Transform:
   m_ObjectHideFlags: 0

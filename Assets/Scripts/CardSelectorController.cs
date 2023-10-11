@@ -7,6 +7,17 @@ public class CardSelectorController : BaseCardPickerController
 {
     int selectedPickerIdx = -1;
 
+    protected override void Start()
+    {
+        base.Start();
+        StateManager.instance.onStateChange += OnStateChange;
+    }
+
+    private void OnDestroy()
+    {
+        StateManager.instance.onStateChange -= OnStateChange;
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -23,6 +34,16 @@ public class CardSelectorController : BaseCardPickerController
                 PickCard(pickers[selectedPickerIdx].card);
             }
         }
+    }
+
+    private void OnStateChange(GameState previous, GameState current)
+    {
+        // TODO: instantiated blocks must be child of this gameobject
+
+        // if (current == GameState.DRAFT)
+        //     gameObject.SetActive(false);
+        // else if (previous == GameState.DRAFT)
+        //     gameObject.SetActive(true);
     }
 
     protected override int GetCardCount() => DeckManager.instance.handCards.Count;
