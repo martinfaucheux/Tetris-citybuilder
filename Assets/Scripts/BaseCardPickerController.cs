@@ -7,12 +7,12 @@ public abstract class BaseCardPickerController : MonoBehaviour
 {
     public GameObject pickerPrefab;
     public float pickerMaxX = 5f;
-    protected List<CardPicker> pickers = new List<CardPicker>();
+    protected List<CardHolder> pickers = new List<CardHolder>();
     public LayerMask layerMask;
 
     protected virtual void Start()
     {
-        pickers = GetComponentsInChildren<CardPicker>().ToList();
+        pickers = GetComponentsInChildren<CardHolder>().ToList();
         RefreshPickers();
     }
 
@@ -34,7 +34,7 @@ public abstract class BaseCardPickerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.zero, Mathf.Infinity, layerMask);
             if (hit.collider != null)
             {
-                CardPicker picker = hit.collider.GetComponent<CardPicker>();
+                CardHolder picker = hit.collider.GetComponent<CardHolder>();
                 if (picker != null && pickers.Contains(picker))
                 {
                     PickCard(picker.card);
@@ -57,14 +57,13 @@ public abstract class BaseCardPickerController : MonoBehaviour
         for (int cardIndex = 0; cardIndex < cardCount; cardIndex++)
         {
             Card card = GetCard(cardIndex);
-            CardPicker cardPicker;
+            CardHolder cardPicker;
 
             if (cardIndex >= pickers.Count)
             {
                 GameObject pickerObj = Instantiate(pickerPrefab, transform);
                 pickerObj.name = $"Picker {cardIndex}";
-                cardPicker = pickerObj.GetComponent<CardPicker>();
-                cardPicker.controller = this;
+                cardPicker = pickerObj.GetComponent<CardHolder>();
                 pickers.Add(cardPicker);
             }
             else
@@ -88,7 +87,7 @@ public abstract class BaseCardPickerController : MonoBehaviour
 
     public void ClearPickers()
     {
-        foreach (CardPicker picker in pickers)
+        foreach (CardHolder picker in pickers)
             Destroy(picker.gameObject);
     }
 }

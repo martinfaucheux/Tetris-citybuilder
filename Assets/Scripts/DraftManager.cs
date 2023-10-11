@@ -15,7 +15,7 @@ public class DraftManager : Singleton<DraftManager>
     public CardDraftPickerController pickerController;
     public StatusTextUI statusTextUI;
     public bool autoDraft;
-    public UnityEvent onDraftStart;
+    public UnityEvent onNewDraft;
 
     void Start()
     {
@@ -30,23 +30,29 @@ public class DraftManager : Singleton<DraftManager>
     public void OnStateChange(GameState previous, GameState current)
     {
         if (current == GameState.DRAFT)
-            StartDraft();
+            StartDraftPhase();
     }
 
-    private void StartDraft() => StartDraft(totalDraftCount);
-    private void StartDraft(int drafCount)
+    private void StartDraftPhase() => StartDraftPhase(totalDraftCount);
+    private void StartDraftPhase(int drafCount)
     {
         pickerController.gameObject.SetActive(true);
         remainingDraftCount = drafCount;
         SetStatusText();
 
-        onDraftStart?.Invoke();
+        StartNewDraft();
 
         if (autoDraft)
         {
             for (int cardIndex = 0; cardIndex < draftOptionCount; cardIndex++)
                 AddToDeck(CardForge.instance.GenerateCard());
         }
+    }
+
+    void StartNewDraft()
+    {
+        // start a single draft
+        onNewDraft?.Invoke();
     }
 
     public void AddToDeck(Card card)
@@ -67,7 +73,9 @@ public class DraftManager : Singleton<DraftManager>
         DeckManager.instance.AddCard(card);
         SetStatusText();
 
-        if (remainingDraftCount <= 0)
+        if (remainingDraftCount > 0)
+            StartNewDraft();
+        else
             EndDraft();
     }
 

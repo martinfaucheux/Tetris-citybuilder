@@ -71,6 +71,7 @@ public class BlockGroup
         GameObject blockGameObject = new GameObject();
         blockGameObject.transform.position = BlockContextManager.instance.GetRealWorldPosition(contextPosition);
         transform = blockGameObject.transform;
+        blockGameObject.name = "BlockGroup";
 
         foreach (Vector2Int relativePosition in grid)
         {
@@ -79,7 +80,7 @@ public class BlockGroup
             Vector3 realPosition = BlockContextManager.instance.GetRealWorldPosition(contextPosition + relativePosition);
 
             GameObject newBlockObj = GameObject.Instantiate(block.data.prefab, realPosition, Quaternion.identity, blockGameObject.transform);
-            newBlockObj.name = block.data.blockName;
+            newBlockObj.name = $"{block.data.blockName} (Block)";
             BlockHolder blockHolder = newBlockObj.GetComponent<BlockHolder>();
             block.blockHolder = blockHolder;
             blockHolder.block = block;
