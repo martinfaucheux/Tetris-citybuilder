@@ -78,10 +78,7 @@ public class DraftManager : Singleton<DraftManager>
             Debug.LogError("Can't end draft if not in draft");
             return;
         }
-        // TODO: fix randomize first hand
-
-        DeckManager.instance.Reset();
-        DeckManager.instance.DrawHand();
+        DeckManager.instance.ShuffleDraw();
         pickerController.ClearPickers();
         pickerController.gameObject.SetActive(false);
         StateManager.SetState(GameState.TURN);

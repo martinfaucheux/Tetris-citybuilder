@@ -2706,7 +2706,7 @@ MonoBehaviour:
   <remainingDraftCount>k__BackingField: 0
   pickerController: {fileID: 2147406260}
   statusTextUI: {fileID: 648889793}
-  autoDraft: 1
+  autoDraft: 0
   onDraftStart:
     m_PersistentCalls:
       m_Calls:

@@ -18,6 +18,12 @@ public class ResourceManager : Singleton<ResourceManager>
     public StatusTextUI statusTextUI;
     public BlockContext currentContext => BlockContextManager.instance.currentContext;
 
+    void Start()
+    {
+        // enforce calculation even before the first turn starts
+        CalculateCurrentResources();
+    }
+
     public bool CheckCanAfford(ResourceGroup cost)
     {
         bool canAfford = CanAfford(cost);

@@ -12,11 +12,25 @@ public class TurnManager : Singleton<TurnManager>
     public UnityEvent onTurnStart;
     public UnityEvent onNewPlayerAction;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        StartNewTurn();
+        StateManager.instance.onStateChange += OnStateChange;
+    }
+
+    void OnDestroy()
+    {
+        StateManager.instance.onStateChange -= OnStateChange;
+    }
+
+    private void OnStateChange(GameState previous, GameState current)
+    {
+        // first turn should start after the first draft phase
+        if (
+            previous == GameState.DRAFT
+            && current == GameState.TURN
+            && turnCount == 0
+        )
+            StartNewTurn();
     }
 
     public void StartNewAction()

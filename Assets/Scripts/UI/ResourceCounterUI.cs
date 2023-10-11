@@ -11,6 +11,12 @@ public class ResourceCounterUI : MonoBehaviour
     public Color positiveColor = Color.green;
     public Color negativeColor = Color.red;
 
+    void Start()
+    {
+        // refresh the display before the first turn starts
+        Refresh();
+    }
+
     public void Refresh()
     {
         ResourceGroup resources = ResourceManager.instance.staticResources;
