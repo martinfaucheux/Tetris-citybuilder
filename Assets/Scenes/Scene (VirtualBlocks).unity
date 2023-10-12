@@ -968,11 +968,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickerPrefab: {fileID: 2456662110361215549, guid: 83ee8249ed4811c469f50b2dd414a61f, type: 3}
-  pickerMaxX: 5
+  spacing: 3.5
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   incrementalAngle: 10
+  displayInArc: 0
 --- !u!1 &708094675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,7 +2891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickerPrefab: {fileID: 2456662110361215549, guid: 83ee8249ed4811c469f50b2dd414a61f, type: 3}
-  pickerMaxX: 5
+  spacing: 3.5
   layerMask:
     serializedVersion: 2
     m_Bits: 64

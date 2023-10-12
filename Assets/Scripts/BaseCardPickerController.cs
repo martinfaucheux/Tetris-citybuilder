@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class BaseCardPickerController : MonoBehaviour
 {
     public GameObject pickerPrefab;
-    public float pickerMaxX = 5f;
+    public float spacing = 3f;
     protected List<CardHolder> pickers = new List<CardHolder>();
     public LayerMask layerMask;
 
@@ -82,7 +82,8 @@ public abstract class BaseCardPickerController : MonoBehaviour
         if (cardCount == 1)
             return transform.position;
 
-        float disp = pickerMaxX * 2 * ((float)cardIndex / (cardCount - 1) - 0.5f);
+        // float disp = pickerMaxX * 2 * ((float)cardIndex / (cardCount - 1) - 0.5f);
+        float disp = spacing * (cardIndex - (cardCount - 1) * 0.5f);
         return transform.position + new Vector3(disp, 0f, 0f);
     }
 
