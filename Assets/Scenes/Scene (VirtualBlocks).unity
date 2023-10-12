@@ -465,7 +465,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.77
+  orthographic size: 16.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -489,7 +489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 3.59, z: -200}
+  m_LocalPosition: {x: 0.5, y: 9.33, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cc5003cd513b4791c431126c6de1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOffset: 5
+  maxOffset: 20
   scrollScaler: 1.5
   buttonScaler: 10
 --- !u!1 &521572466
@@ -962,9 +962,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673031145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.76, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -13, z: 100}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1456371250}
   - {fileID: 1063610206}
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickerPrefab: {fileID: 2456662110361215549, guid: 83ee8249ed4811c469f50b2dd414a61f, type: 3}
-  spacing: 3.5
+  spacing: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1068,8 +1068,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708094675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -10, z: 10}
-  m_LocalScale: {x: 50, y: 20, z: 1}
+  m_LocalPosition: {x: 0.5, y: -25, z: 10}
+  m_LocalScale: {x: 100, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
