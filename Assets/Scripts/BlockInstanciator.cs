@@ -13,10 +13,12 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
     public float moveCooldown = 0.1f;
     public int maxIteriation = 10000;
     float _lastMoveTime = 0f;
+    float _yOffset;
     Vector2Int instantiatePosition;
 
     void Start()
     {
+        _yOffset = transform.position.y;
         instantiatePosition = BlockContextManager.instance.GetContextPosition(transform.position);
         SetSelectedCard();
     }
@@ -98,9 +100,22 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         ghostGameObject.transform.SetParent(null);
         ghostGameObject = null;
 
+        UpdateHeight();
+
         DeckManager.instance.Discard(selectedCard);
         SetSelectedCard(DeckManager.instance.GetFirstHandCard());
         TurnManager.instance.StartNewAction();
+    }
+
+    private void UpdateHeight()
+    {
+        // update the transform position
+        Vector3 newPosition = transform.position;
+        newPosition.y = _yOffset + BlockContextManager.instance.currentContext.GetMaxHeight();
+        float disp = newPosition.y - transform.position.y;
+        transform.position = newPosition;
+
+        instantiatePosition += new Vector2Int(0, Mathf.RoundToInt(disp));
     }
 
     public void SetSelectedCard(Card card = null)

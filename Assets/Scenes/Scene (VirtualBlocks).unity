@@ -542,8 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cc5003cd513b4791c431126c6de1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOffset: 7
+  maxOffset: 5
   scrollScaler: 1.5
+  buttonScaler: 10
 --- !u!1 &521572466
 GameObject:
   m_ObjectHideFlags: 0
