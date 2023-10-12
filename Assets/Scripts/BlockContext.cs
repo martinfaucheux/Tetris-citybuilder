@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BlockContext
@@ -28,4 +29,6 @@ public class BlockContext
             return grid[position];
         return null;
     }
+
+    public int GetMaxHeight() => grid.Any() ? grid.Select(v => v.y).Max() : 0;
 }
