@@ -14,7 +14,9 @@ public class HouseBlock : Block
         return new ResourceGroup(people: peopleValue + satisfaction);
     }
 
-    public override ResourceGroup GetPermanentProduct() => new ResourceGroup(gold: -((HouseBlockData)data).tax);
+    public override ResourceGroup GetPermanentProduct() => (
+        new ResourceGroup(gold: -ResourceManager.instance.GetTaxAmount())
+    );
 
     public override string GetDescription()
     {

@@ -16,6 +16,7 @@ public class ResourceManager : Singleton<ResourceManager>
     [Tooltip("Resources kept between turns")]
     public ResourceGroup permanentResources { get; private set; }
     public StatusTextUI statusTextUI;
+    public int taxCycle = 10;
     public BlockContext currentContext => BlockContextManager.instance.currentContext;
 
     void Start()
@@ -72,4 +73,6 @@ public class ResourceManager : Singleton<ResourceManager>
         }
         return "";
     }
+
+    public int GetTaxAmount() => TurnManager.instance.turnCount / taxCycle;
 }
