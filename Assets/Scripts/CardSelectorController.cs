@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class CardSelectorController : BaseCardPickerController
@@ -8,6 +9,9 @@ public class CardSelectorController : BaseCardPickerController
     int selectedPickerIdx = -1;
     public float incrementalAngle = 6f;
     public bool displayInArc = false;
+    [Range(1f, 2f)]
+    public float cardUpscale = 1.2f;
+    public RectTransform virtualCardHolder;
 
     protected override void Start()
     {
@@ -38,6 +42,12 @@ public class CardSelectorController : BaseCardPickerController
         }
     }
 
+    protected override CardHolder InstantiatePicker(int cardIndex)
+    {
+        CardHolder cardHolder = base.InstantiatePicker(cardIndex);
+        cardHolder.transform.localScale = cardUpscale * cardHolder.transform.localScale;
+        return cardHolder;
+    }
     private void OnStateChange(GameState previous, GameState current)
     {
         // TODO: instantiated blocks must be child of this gameobject
@@ -76,9 +86,29 @@ public class CardSelectorController : BaseCardPickerController
 
     protected override Vector3 GetPickerPosition(int cardIndex)
     {
-        if (!displayInArc)
-            return base.GetPickerPosition(cardIndex);
+        if (displayInArc)
+            return GetArcPosition(cardIndex);
 
+        if (virtualCardHolder != null)
+        {
+            if (cardIndex >= virtualCardHolder.childCount)
+                Debug.LogError("Card index out of range");
+            else
+            {
+                RectTransform uiElement = (RectTransform)virtualCardHolder.GetChild(cardIndex);
+                Vector3 uiPosition = uiElement.TransformPoint(uiElement.rect.center);
+                Vector3 worldPosition;
+                if (RectTransformUtility.ScreenPointToWorldPointInRectangle(uiElement, uiPosition, Camera.main, out worldPosition))
+                    return worldPosition;
+                else
+                    Debug.LogError("Failed to convert UI position to world position");
+            }
+        }
+        return base.GetPickerPosition(cardIndex);
+    }
+
+    private Vector3 GetArcPosition(int cardIndex)
+    {
         int cardCount = GetCardCount();
         if (cardCount == 1)
             return transform.position;
@@ -90,7 +120,6 @@ public class CardSelectorController : BaseCardPickerController
         float radAngle = GetCardAngle(cardIndex) * Mathf.Deg2Rad;
         float z = (float)cardIndex / cardCount;
         return transform.position + new Vector3(0, 0, z) + circleRadius * new Vector3(-Mathf.Sin(radAngle), -Mathf.Cos(radAngle) + 1, 0);
-
     }
 
     protected override Quaternion GetPickerRotation(int cardIndex)

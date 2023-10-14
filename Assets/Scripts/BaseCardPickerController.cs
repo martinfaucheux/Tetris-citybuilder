@@ -61,9 +61,7 @@ public abstract class BaseCardPickerController : MonoBehaviour
 
             if (cardIndex >= pickers.Count)
             {
-                GameObject pickerObj = Instantiate(pickerPrefab, transform);
-                pickerObj.name = $"Picker {cardIndex}";
-                cardPicker = pickerObj.GetComponent<CardHolder>();
+                cardPicker = InstantiatePicker(cardIndex);
                 pickers.Add(cardPicker);
             }
             else
@@ -74,6 +72,13 @@ public abstract class BaseCardPickerController : MonoBehaviour
             cardPicker.transform.rotation = GetPickerRotation(cardIndex);
             cardPicker.Initialize(card);
         }
+    }
+
+    protected virtual CardHolder InstantiatePicker(int cardIndex)
+    {
+        GameObject pickerObj = Instantiate(pickerPrefab, transform);
+        pickerObj.name = $"Picker {cardIndex}";
+        return pickerObj.GetComponent<CardHolder>();
     }
 
     protected virtual Vector3 GetPickerPosition(int cardIndex)
