@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="RoundSquareBorder.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="10.35098"
+     inkscape:cx="243.93826"
+     inkscape:cy="439.18548"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke-width:1"
+       id="rect236"
+       width="91.962997"
+       height="63.043816"
+       x="24.292114"
+       y="81.552094" />
+    <rect
+       style="fill:none;stroke-width:1"
+       id="rect238"
+       width="22.267771"
+       height="7.6293945e-06"
+       x="59.139729"
+       y="113.074" />
+    <path
+       sodipodi:type="star"
+       style="fill:none;stroke-width:1"
+       id="path292"
+       inkscape:flatsided="false"
+       sodipodi:sides="4"
+       sodipodi:cx="80.973709"
+       sodipodi:cy="105.84421"
+       sodipodi:r1="61.346848"
+       sodipodi:r2="30.673424"
+       sodipodi:arg1="0.78539816"
+       sodipodi:arg2="1.5707963"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 124.35248,149.22298 80.97371,136.51763 37.594937,149.22298 50.300285,105.84421 37.594937,62.465436 80.973708,75.170784 124.35248,62.465436 111.64713,105.84421 Z"
+       inkscape:transform-center-x="1.0201412e-06"
+       inkscape:transform-center-y="-1.3334703e-06"
+       transform="translate(-10.700096,7.2297935)" />
+    <rect
+       style="fill:#000000;stroke:#000000;stroke-width:4.5;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect1016"
+       width="11.655901"
+       height="11.655901"
+       x="64.445663"
+       y="107.24605"
+       inkscape:export-filename="round_square_border.png"
+       inkscape:export-xdpi="804.9566"
+       inkscape:export-ydpi="804.9566" />
+    <g
+       id="g1075"
+       transform="matrix(1.4840896,0,0,1.4840896,-23.184126,-6.7799754)">
+      <rect
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:2.25;stroke-linejoin:round;stroke-dasharray:none"
+         id="rect1018"
+         width="5.8279514"
+         height="5.8279514"
+         x="60.059135"
+         y="77.845284" />
+    </g>
+  </g>
+</svg>

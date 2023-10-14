@@ -30,5 +30,5 @@ public class BlockContext
         return null;
     }
 
-    public int GetMaxHeight() => grid.Any() ? grid.Select(v => v.y).Max() : 0;
+    public int GetMaxHeight() => grid.Any() ? grid.Select(v => v.y).Max() + 1 : 0;
 }

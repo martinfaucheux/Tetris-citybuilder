@@ -31,6 +31,6 @@ public class CardHolder : MonoBehaviour
         blockGroupObject.transform.rotation = blockGroupContainer.rotation;
         blockGroupObject.transform.localScale = Vector3.one;
 
-        costText.text = card.cost.ToStringIcon();
+        costText.text = card.cost.ToStringIcon(splitter: '\n');
     }
 }

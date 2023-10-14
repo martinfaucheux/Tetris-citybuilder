@@ -59,13 +59,13 @@ public struct ResourceGroup
         return result.TrimEnd(',', ' ');
     }
 
-    public string ToStringIcon()
+    public string ToStringIcon(char splitter = ' ')
     {
         string result = "";
-        if (gold != 0) result += $"<sprite name=\"Gold\"> {gold} ";
-        if (food != 0) result += $"<sprite name=\"Food\"> {food} ";
-        if (people != 0) result += $"<sprite name=\"People\"> {people} ";
-        return result.TrimEnd(' ');
+        if (gold != 0) result += $"<sprite name=\"Gold\"> {gold}{splitter}";
+        if (food != 0) result += $"<sprite name=\"Food\"> {food}{splitter}";
+        if (people != 0) result += $"<sprite name=\"People\"> {people}{splitter}";
+        return result.TrimEnd(splitter);
     }
 
     public bool IsZero() => gold == 0 && food == 0 && people == 0;
