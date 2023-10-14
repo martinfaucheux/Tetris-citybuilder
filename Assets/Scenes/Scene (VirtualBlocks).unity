@@ -650,7 +650,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 70, y: 93.333336}
+  m_CellSize: {x: 80, y: 106.666664}
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 3
@@ -1959,7 +1959,7 @@ MonoBehaviour:
     m_Bits: 64
   incrementalAngle: 10
   displayInArc: 0
-  cardUpscale: 1.454
+  cardUpscale: 1.659
   virtualCardHolder: {fileID: 179217699}
 --- !u!1 &708094675
 GameObject:
