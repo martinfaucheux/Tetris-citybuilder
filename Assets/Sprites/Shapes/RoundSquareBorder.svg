@@ -83,7 +83,10 @@
        inkscape:export-ydpi="804.9566" />
     <g
        id="g1075"
-       transform="matrix(1.4840896,0,0,1.4840896,-23.184126,-6.7799754)">
+       transform="matrix(1.4840896,0,0,1.4840896,-23.184126,-6.7799754)"
+       inkscape:export-filename="round_square_border.png"
+       inkscape:export-xdpi="149.89821"
+       inkscape:export-ydpi="149.89821">
       <rect
          style="fill:#ffffff;stroke:#ffffff;stroke-width:2.25;stroke-linejoin:round;stroke-dasharray:none"
          id="rect1018"
