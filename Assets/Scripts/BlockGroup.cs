@@ -48,6 +48,36 @@ public class BlockGroup
         grid = newGrid;
     }
 
+    public Vector2Int GetNearestValidPosition(BlockContext context, Vector2Int contextPosition)
+    {
+        int yDisp = 0;
+        int xMinDisp = 0;
+        int xMaxDisp = 0;
+        foreach (Vector2Int v in grid)
+        {
+            int _yDisp = (v + contextPosition).y;
+            yDisp = Mathf.Max(yDisp, -_yDisp);
+
+            int _xMinDisp = -context.xMax - (v + contextPosition).x;
+            xMinDisp = Mathf.Max(xMinDisp, _xMinDisp);
+
+            int _xMaxDisp = (v + contextPosition).x - context.xMax;
+            xMaxDisp = Mathf.Max(xMaxDisp, _xMaxDisp);
+        }
+
+        if (xMinDisp > 0 && xMaxDisp > 0)
+            Debug.LogError("The block is too wide to fit in the context");
+
+        Vector2Int newBlockPosition = contextPosition + new Vector2Int(
+            xMinDisp > 0 ? xMinDisp : -xMaxDisp, yDisp
+        );
+
+        if (!IsValidPosition(context, newBlockPosition))
+            Debug.LogError("Invalid nearest valid position computed");
+
+        return newBlockPosition;
+    }
+
     public Vector2Int GetLowestPosition(BlockContext context, int xBase)
     {
         int yBaseMin = 0;

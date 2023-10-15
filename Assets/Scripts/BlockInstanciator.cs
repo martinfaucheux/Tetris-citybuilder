@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockInstanciator : Singleton<BlockInstanciator>
@@ -32,6 +34,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         ) return;
 
         Vector2Int groupContextPosition = BlockContextManager.instance.GetContextPosition(blockGroup.transform.position);
+        BlockContext currentContext = BlockContextManager.instance.currentContext;
 
         if (Time.time < _lastMoveTime + moveCooldown)
             return;
@@ -47,52 +50,56 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
             rot = -1;
         else if (Input.GetKeyDown(KeyCode.E))
             rot = 1;
-        if (rot != 0)
-        {
-            blockGroup.Rotate(groupContextPosition, rot);
-            if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, groupContextPosition))
-            {
-                // update the transform rotation
-                blockGroup.transform.Rotate(0, 0, 90 * rot);
-            }
-            else
-            {
-                // revert rotation
-                transform.Rotate(0, 0, -rot);
-            }
-            _lastMoveTime = Time.time;
-        }
+
+
+        bool positionChanged = false;
+        Vector2Int newTempPosition = groupContextPosition;
+
 
         if (disp != 0)
         {
-            Vector2Int newPos = groupContextPosition + new Vector2Int(disp, 0);
-            if (blockGroup.IsValidPosition(BlockContextManager.instance.currentContext, newPos))
+            bool isValidPosition = blockGroup.IsValidPosition(
+                currentContext, groupContextPosition + new Vector2Int(disp, 0)
+            );
+            if (isValidPosition)
             {
-                instantiatePosition = newPos;
-                blockGroup.Move(newPos);
-                _lastMoveTime = Time.time;
+                newTempPosition = groupContextPosition + new Vector2Int(disp, 0);
+                positionChanged = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (rot != 0)
+        {
+            blockGroup.Rotate(groupContextPosition, rot);
+            blockGroup.transform.Rotate(0, 0, 90 * rot);
+            newTempPosition = blockGroup.GetNearestValidPosition(currentContext, groupContextPosition);
+            positionChanged = true;
+        }
+
+
+        if (positionChanged)
+        {
+            Vector2Int newPos = blockGroup.GetLowestPosition(
+                BlockContextManager.instance.currentContext, newTempPosition.x
+            );
+            instantiatePosition = newPos;
+            blockGroup.Move(newPos);
+            _lastMoveTime = Time.time;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             if (ResourceManager.instance.CheckCanAfford(blockGroup.cost))
             {
-                Vector2Int spawnPos = blockGroup.GetLowestPosition(BlockContextManager.instance.currentContext, groupContextPosition.x);
-                Spawn(spawnPos);
+                Spawn();
             }
             else
-                // TODO: explain which resource is missing
                 Debug.Log("Not enough resources");
         }
     }
 
-    private void Spawn(Vector2Int contextPosition)
+    private void Spawn()
     {
         // this assume the matrixPosition is valid
-
-        // update the contextPosition and transform positions
-        blockGroup.Move(contextPosition);
 
         // blocks are registered in the Context
         blockGroup.Register();
@@ -137,7 +144,12 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         else
         {
             blockGroup = new BlockGroup(selectedCard);
-            ghostGameObject = blockGroup.InstantiateGameObject(instantiatePosition);
+            // Make sure new object is not out of bounds
+            Vector2Int newTempPosition = blockGroup.GetNearestValidPosition(
+                BlockContextManager.instance.currentContext, instantiatePosition
+            );
+            Vector2Int spawnPos = blockGroup.GetLowestPosition(BlockContextManager.instance.currentContext, newTempPosition.x);
+            ghostGameObject = blockGroup.InstantiateGameObject(spawnPos);
         }
     }
 }
