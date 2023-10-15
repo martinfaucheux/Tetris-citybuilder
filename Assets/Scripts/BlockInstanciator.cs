@@ -98,6 +98,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
     {
         // blocks are registered in the Context
         blockGroup.Register();
+        blockGroup.SetBlockHolderState(BlockHolderState.PLACED);
 
         ghostGameObject.transform.SetParent(null);
         ghostGameObject = null;
@@ -132,6 +133,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
             );
             Vector2Int spawnPos = blockGroup.GetLowestPosition(BlockContextManager.instance.currentContext, newTempPosition.x);
             ghostGameObject = blockGroup.InstantiateGameObject(spawnPos);
+            blockGroup.SetBlockHolderState(BlockHolderState.GHOST);
         }
     }
 }

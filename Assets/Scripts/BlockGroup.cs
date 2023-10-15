@@ -134,6 +134,11 @@ public class BlockGroup
         grid.Select(v => contextPosition + v).All(v => context.IsValidPosition(v))
     );
 
-    // TODO: function to get the 2d bounds of the group
     public Bounds GetBounds() => grid.GetBounds();
+
+    public void SetBlockHolderState(BlockHolderState state)
+    {
+        foreach (Vector2Int relativePosition in grid)
+            grid[relativePosition].blockHolder.SetState(state);
+    }
 }
