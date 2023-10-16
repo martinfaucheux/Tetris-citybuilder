@@ -25,6 +25,15 @@ public class BlockHolder : MonoBehaviour
         SetBlockLight();
     }
 
+    void OnDestroy()
+    {
+        if (_blockLight != null)
+        {
+            _blockLight.StopPulse();
+            PoolManager.GetPool(objectPoolCode).ReturnToPool(_blockLight.gameObject);
+        }
+    }
+
     private void LateUpdate()
     {
         // sprite should never be rotated

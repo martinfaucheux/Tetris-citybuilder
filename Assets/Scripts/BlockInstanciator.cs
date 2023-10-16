@@ -85,16 +85,19 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            if (ResourceManager.instance.CheckCanAfford(blockGroup.cost))
+            if (
+                ResourceManager.instance.CheckCanAfford(blockGroup.cost)
+                && RealmManager.instance.CheckIsUnlocked(groupContextPosition.y)
+            )
             {
-                Spawn();
+                Place();
             }
             else
                 Debug.Log("Not enough resources");
         }
     }
 
-    private void Spawn()
+    private void Place()
     {
         // blocks are registered in the Context
         blockGroup.Register();
@@ -113,11 +116,9 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
         selectedCard = card;
 
         if (ghostGameObject != null)
+        {
             Destroy(ghostGameObject);
-
-        // remove existing object
-        foreach (Transform child in transform)
-            Destroy(child.gameObject);
+        }
 
         if (selectedCard == null)
         {

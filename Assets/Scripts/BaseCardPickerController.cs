@@ -29,7 +29,6 @@ public abstract class BaseCardPickerController : MonoBehaviour
             mousePos.z = Camera.main.nearClipPlane;
 
             Vector3 rayPosition = Camera.main.ScreenToWorldPoint(mousePos);
-            Debug.DrawRay(rayPosition, Vector2.zero, Color.red, 5f);
 
             RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.zero, Mathf.Infinity, layerMask);
             if (hit.collider != null)
