@@ -22,7 +22,7 @@ MonoBehaviour:
   prefab: {fileID: 8540854704036334866, guid: e26e2c5147ea24a42b48727e09881848, type: 3}
   product:
     gold: 0
-    food: 4
+    food: 3
     people: 0
   permanentProduct:
     gold: 0
