@@ -24,6 +24,17 @@ public class RealmDisplay : MonoBehaviour
         boxRenderer.color = color;
 
         Refresh();
+        StateManager.instance.onStateChange += OnStateChange;
+    }
+
+    void OnDestroy()
+    {
+        StateManager.instance.onStateChange -= OnStateChange;
+    }
+
+    private void OnStateChange(GameState previousState, GameState newState)
+    {
+        costText.enabled = newState == GameState.TURN;
     }
 
     void Update()
@@ -69,6 +80,9 @@ public class RealmDisplay : MonoBehaviour
 
     private bool IsHovered()
     {
+        if (StateManager.currentState != GameState.TURN)
+            return false;
+
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
 

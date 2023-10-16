@@ -9,20 +9,6 @@ public class CardSelectorController : BaseCardPickerController
     int selectedPickerIdx = -1;
     public float incrementalAngle = 6f;
     public bool displayInArc = false;
-    [Range(1f, 2f)]
-    public float cardUpscale = 1.2f;
-    public RectTransform virtualCardHolder;
-
-    protected override void Start()
-    {
-        base.Start();
-        StateManager.instance.onStateChange += OnStateChange;
-    }
-
-    private void OnDestroy()
-    {
-        StateManager.instance.onStateChange -= OnStateChange;
-    }
 
     protected override void Update()
     {
@@ -45,17 +31,13 @@ public class CardSelectorController : BaseCardPickerController
     protected override CardHolder InstantiatePicker(int cardIndex)
     {
         CardHolder cardHolder = base.InstantiatePicker(cardIndex);
-        cardHolder.transform.localScale = cardUpscale * cardHolder.transform.localScale;
+        if (virtualCardHolder != null)
+        {
+            RectTransform uiEquivalent = GetUiEquivalent(cardIndex);
+            Vector3 scale = UiUtils.GetUiRealWordScale(uiEquivalent);
+            cardHolder.transform.localScale = scale;
+        }
         return cardHolder;
-    }
-    private void OnStateChange(GameState previous, GameState current)
-    {
-        // TODO: instantiated blocks must be child of this gameobject
-
-        // if (current == GameState.DRAFT)
-        //     gameObject.SetActive(false);
-        // else if (previous == GameState.DRAFT)
-        //     gameObject.SetActive(true);
     }
 
     protected override int GetCardCount() => DeckManager.instance.handCards.Count;
@@ -89,21 +71,6 @@ public class CardSelectorController : BaseCardPickerController
         if (displayInArc)
             return GetArcPosition(cardIndex);
 
-        if (virtualCardHolder != null)
-        {
-            if (cardIndex >= virtualCardHolder.childCount)
-                Debug.LogError("Card index out of range");
-            else
-            {
-                RectTransform uiElement = (RectTransform)virtualCardHolder.GetChild(cardIndex);
-                Vector3 uiPosition = uiElement.TransformPoint(uiElement.rect.center);
-                Vector3 worldPosition;
-                if (RectTransformUtility.ScreenPointToWorldPointInRectangle(uiElement, uiPosition, Camera.main, out worldPosition))
-                    return worldPosition;
-                else
-                    Debug.LogError("Failed to convert UI position to world position");
-            }
-        }
         return base.GetPickerPosition(cardIndex);
     }
 

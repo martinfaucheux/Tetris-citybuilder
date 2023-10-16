@@ -9,6 +9,7 @@ public abstract class BaseCardPickerController : MonoBehaviour
     public float spacing = 3f;
     protected List<CardHolder> pickers = new List<CardHolder>();
     public LayerMask layerMask;
+    public RectTransform virtualCardHolder;
 
     protected virtual void Start()
     {
@@ -77,16 +78,38 @@ public abstract class BaseCardPickerController : MonoBehaviour
     {
         GameObject pickerObj = Instantiate(pickerPrefab, transform);
         pickerObj.name = $"Picker {cardIndex}";
-        return pickerObj.GetComponent<CardHolder>();
+        CardHolder cardHolder = pickerObj.GetComponent<CardHolder>();
+        if (virtualCardHolder != null)
+        {
+            RectTransform uiEquivalent = GetUiEquivalent(cardIndex);
+            Vector3 scale = UiUtils.GetUiRealWordScale(uiEquivalent);
+            cardHolder.transform.localScale = scale;
+        }
+        return cardHolder;
     }
 
     protected virtual Vector3 GetPickerPosition(int cardIndex)
     {
+        if (virtualCardHolder != null)
+        {
+            RectTransform uiEquivalent = GetUiEquivalent(cardIndex);
+            if (uiEquivalent != null)
+            {
+                RectTransform uiElement = (RectTransform)virtualCardHolder.GetChild(cardIndex);
+                Vector3 uiPosition = uiElement.TransformPoint(uiElement.rect.center);
+                Vector3 worldPosition;
+                if (RectTransformUtility.ScreenPointToWorldPointInRectangle(uiElement, uiPosition, Camera.main, out worldPosition))
+                    return worldPosition;
+                else
+                    Debug.LogError("Failed to convert UI position to world position");
+            }
+        }
+
+        // legacy code
         int cardCount = GetCardCount();
         if (cardCount == 1)
             return transform.position;
 
-        // float disp = pickerMaxX * 2 * ((float)cardIndex / (cardCount - 1) - 0.5f);
         float disp = spacing * (cardIndex - (cardCount - 1) * 0.5f);
         return transform.position + new Vector3(disp, 0f, 0f);
     }
@@ -98,4 +121,15 @@ public abstract class BaseCardPickerController : MonoBehaviour
         foreach (CardHolder picker in pickers)
             Destroy(picker.gameObject);
     }
+
+    protected RectTransform GetUiEquivalent(int cardIndex)
+    {
+        if (cardIndex >= virtualCardHolder.childCount)
+        {
+            Debug.LogError("Card index out of range");
+            return null;
+        }
+        return (RectTransform)virtualCardHolder.GetChild(cardIndex);
+    }
+
 }
