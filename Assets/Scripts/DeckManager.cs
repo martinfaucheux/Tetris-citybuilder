@@ -13,6 +13,8 @@ public class DeckManager : Singleton<DeckManager>
     public List<Card> discardCards = new List<Card>();
     public event Action onDeckChanged;
 
+    public List<Card> allCards => drawCards.Concat(handCards).Concat(discardCards).ToList();
+
     public void RefreshHand()
     {
         DiscardHand();

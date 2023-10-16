@@ -21,7 +21,9 @@ public class Card : ScriptableObject
 {
     public List<BlockPosition> blockPositions = new List<BlockPosition>();
 
-    public ResourceGroup cost => blockPositions
+    public ResourceGroup cost => (
+        blockPositions
         .Select(blockPosition => blockPosition.blockData.cost)
-        .Aggregate(new ResourceGroup(), (a, b) => a + b);
+        .Aggregate(new ResourceGroup(), (a, b) => a + b)
+    );
 }

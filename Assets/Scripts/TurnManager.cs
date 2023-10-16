@@ -42,7 +42,8 @@ public class TurnManager : Singleton<TurnManager>
     {
         turnCount++;
         onTurnStart?.Invoke();
-        StartNewAction();
+        if (StateManager.currentState != GameState.GAMEOVER)
+            StartNewAction();
     }
 
     public void EndTurn()

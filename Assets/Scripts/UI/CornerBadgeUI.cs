@@ -15,7 +15,7 @@ public class CornerBadgeUI : MonoBehaviour
         dayText.text = $"Day {TurnManager.instance.turnCount}";
         taxText.text = $"Tax: <sprite name=\"Gold\"> {ResourceManager.instance.GetTaxAmount()}";
 
-        int taxCycle = ResourceManager.instance.taxCycle;
+        int taxCycle = ResourceManager.instance.taxCycleDuration;
         if (pointContainer.childCount != taxCycle)
             Debug.LogError("Invalid child count");
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class ResourceManager : Singleton<ResourceManager>
 {
@@ -16,7 +16,8 @@ public class ResourceManager : Singleton<ResourceManager>
     [Tooltip("Resources kept between turns")]
     public ResourceGroup permanentResources { get; private set; }
     public StatusTextUI statusTextUI;
-    public int taxCycle = 10;
+    public int taxCycleDuration = 10;
+    public int baseTax = 0;
     public BlockContext currentContext => BlockContextManager.instance.currentContext;
 
     void Start()
@@ -74,5 +75,5 @@ public class ResourceManager : Singleton<ResourceManager>
         return "";
     }
 
-    public int GetTaxAmount() => TurnManager.instance.turnCount / taxCycle;
+    public int GetTaxAmount() => baseTax + TurnManager.instance.turnCount / taxCycleDuration;
 }

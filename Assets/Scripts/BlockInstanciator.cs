@@ -25,10 +25,8 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
     // Update is called once per frame
     void Update()
     {
-        if (
-            StateManager.currentState != GameState.TURN
-            || selectedCard == null
-        ) return;
+        if (StateManager.currentState != GameState.TURN || selectedCard == null)
+            return;
 
         Vector2Int groupContextPosition = BlockContextManager.instance.GetContextPosition(blockGroup.transform.position);
         BlockContext currentContext = BlockContextManager.instance.currentContext;
