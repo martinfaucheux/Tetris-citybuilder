@@ -4738,6 +4738,7 @@ MonoBehaviour:
   statusTextUI: {fileID: 648889793}
   taxCycleDuration: 10
   baseTax: 0
+  taxIncrease: 3
 --- !u!114 &1440337145
 MonoBehaviour:
   m_ObjectHideFlags: 0

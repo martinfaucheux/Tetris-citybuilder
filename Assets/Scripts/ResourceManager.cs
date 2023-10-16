@@ -18,6 +18,8 @@ public class ResourceManager : Singleton<ResourceManager>
     public StatusTextUI statusTextUI;
     public int taxCycleDuration = 10;
     public int baseTax = 0;
+    [Range(1, 10)]
+    public int taxIncrease = 1;
     public BlockContext currentContext => BlockContextManager.instance.currentContext;
 
     void Start()
@@ -75,5 +77,5 @@ public class ResourceManager : Singleton<ResourceManager>
         return "";
     }
 
-    public int GetTaxAmount() => baseTax + TurnManager.instance.turnCount / taxCycleDuration;
+    public int GetTaxAmount() => baseTax + taxIncrease * (TurnManager.instance.turnCount / taxCycleDuration);
 }

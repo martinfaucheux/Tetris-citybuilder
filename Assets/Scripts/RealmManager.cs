@@ -28,7 +28,7 @@ public class RealmManager : Singleton<RealmManager>
     {
         bool isUnlocked = IsUnlocked(height);
         if (!isUnlocked)
-            StatusTextUI.instance.SetText("You need to unlock this realm before building here.", ColorHolder.instance.red);
+            StatusTextUI.instance.SetText("You need to unlock this realm before building here.", ColorHolder.instance.red, true);
         return isUnlocked;
     }
 }

@@ -91,7 +91,7 @@ public class BlockInstanciator : Singleton<BlockInstanciator>
                 Place();
             }
             else
-                Debug.Log("Not enough resources");
+                Debug.Log("Cannot play this card");
         }
     }
 
