@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Inn
   m_EditorClassIdentifier: 
   blockName: Inn
-  description: 
+  description: 'Yield <sprite name="Gold"> 3 per day
+
+    Provide <sprite name="Heart">
+    2 to nearby houses'
   cost:
     gold: 10
     food: 2

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: House
   m_EditorClassIdentifier: 
   blockName: House
-  description: 
+  description: Host <sprite name="People"> 3 + 1 for each <sprite name="Star">
   cost:
     gold: 10
     food: 3
     people: 0
-  rarity: 2
+  rarity: 3
   prefab: {fileID: 8540854704036334866, guid: 8cf3023177fc5244f8929f0f749bd4e6, type: 3}
   peopleAmount: 3
   tax: 3

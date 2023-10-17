@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Market
   m_EditorClassIdentifier: 
   blockName: Market
-  description: Yield 3 Gold per day
+  description: Yield <sprite name="Gold"> 3 per day
   cost:
     gold: 10
     food: 1

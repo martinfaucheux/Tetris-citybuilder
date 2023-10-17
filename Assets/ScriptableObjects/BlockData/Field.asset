@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Field
   m_EditorClassIdentifier: 
   blockName: Field
-  description: 
+  description: Produces <sprite name="Food"> 2 + 4 if no structure above the block
   cost:
     gold: 5
     food: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Column
   m_EditorClassIdentifier: 
   blockName: Column
-  description: 
+  description: Provide <sprite name="Heart"> 1 to nearby houses
   cost:
     gold: 2
     food: 0

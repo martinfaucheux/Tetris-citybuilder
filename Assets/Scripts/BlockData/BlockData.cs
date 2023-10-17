@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class BlockData : ScriptableObject
 {
     public string blockName;
+    [TextArea()]
     public string description;
     public ResourceGroup cost;
     [Range(0, 4)]

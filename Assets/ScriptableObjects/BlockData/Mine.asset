@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: 
   blockName: Mine
-  description: +1 Gold for each adjacent rock
+  description: Yield <sprite name="Gold"> 1 per day for each adjacent rock
   cost:
     gold: 6
     food: 0

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Bakery
   m_EditorClassIdentifier: 
   blockName: Market
-  description: 
+  description: 'Yield <sprite name="Gold"> 4 per day
+
+    Provide <sprite name="Heart">
+    1 to nearby houses'
   cost:
     gold: 13
     food: 2

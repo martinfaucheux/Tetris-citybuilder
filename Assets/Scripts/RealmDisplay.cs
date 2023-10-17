@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using TMPro;
 using UnityEngine;
 
@@ -8,12 +9,14 @@ public class RealmDisplay : MonoBehaviour
     public SpriteRenderer dottedlineRenderer;
     public SpriteRenderer boxRenderer;
     public TextMeshPro costText;
+    public TextMeshPro buyText;
+    public TextMeshPro starCountText;
     [Range(0f, 1.5f)]
     public float transitionDuration = 0.5f;
     [Range(0f, 1f)]
     public float maxOppacity = 0.5f;
     public LayerMask boxLayerMask;
-    private int[] _descrIds = new int[] { 0, 0 };
+    private int[] _descrIds = new int[] { };
     private bool _isHovered = false;
 
     void Start()
@@ -24,6 +27,7 @@ public class RealmDisplay : MonoBehaviour
         boxRenderer.color = color;
 
         Refresh();
+        ActionRefresh();
         StateManager.instance.onStateChange += OnStateChange;
     }
 
@@ -47,7 +51,8 @@ public class RealmDisplay : MonoBehaviour
                 CancelFading();
                 LTDescr d1 = LeanTween.alpha(dottedlineRenderer.gameObject, 0f, transitionDuration).setEaseOutCubic();
                 LTDescr d2 = LeanTween.alpha(boxRenderer.gameObject, maxOppacity, transitionDuration).setEaseOutCubic();
-                _descrIds = new int[] { d1.id, d2.id };
+                LTDescr d3 = LeanTween.alpha(buyText.gameObject, maxOppacity, transitionDuration).setEaseOutCubic();
+                _descrIds = new int[] { d1.id, d2.id, d3.id };
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -64,6 +69,8 @@ public class RealmDisplay : MonoBehaviour
                 CancelFading();
                 LTDescr d1 = LeanTween.alpha(dottedlineRenderer.gameObject, maxOppacity, transitionDuration).setEaseOutCubic();
                 LTDescr d2 = LeanTween.alpha(boxRenderer.gameObject, 0f, transitionDuration).setEaseOutCubic();
+                LTDescr d3 = LeanTween.alpha(buyText.gameObject, 0f, transitionDuration).setEaseOutCubic();
+                _descrIds = new int[] { d1.id, d2.id, d3.id };
                 _descrIds = new int[] { d1.id, d2.id };
 
             }
@@ -97,15 +104,29 @@ public class RealmDisplay : MonoBehaviour
     {
         RealmManager manager = RealmManager.instance;
         transform.position = new Vector3(
-            0.5f, (manager.unlockedRealm + 1.5f) * manager.realmSize, transform.position.z
+            0.5f, (manager.unlockedRealmIndex + 1.5f) * manager.realmSize, transform.position.z
         );
 
-        ResourceGroup cost = manager.realmCost;
-        costText.text = $"Unlock Realm for {cost.ToStringIcon()}";
+        ResourceGroup cost = manager.GetNextRealmCost();
+        string text = $"Unlock Realm for {cost.ToStringIcon()}";
+        text += $"\nRequire <sprite name=\"Star\"> {manager.GetNextRealmLevelRequirement()} in previous realm";
+        costText.text = text;
 
         Vector3 dottedLinePosition = new Vector3(
-            0.5f, (manager.unlockedRealm + 1) * manager.realmSize + 0.5f, dottedlineRenderer.transform.position.z
+            0.5f, (manager.unlockedRealmIndex + 1) * manager.realmSize + 0.5f, dottedlineRenderer.transform.position.z
         );
         LeanTween.move(dottedlineRenderer.gameObject, dottedLinePosition, transitionDuration * 2).setEaseInOutQuart();
+    }
+
+    public void ActionRefresh()
+    {
+        int realmLevel = RealmManager.instance.GetCurrentRealmLevel();
+        starCountText.text = $"<sprite name=\"Star\"> {realmLevel}";
+
+        bool canUnlock = (
+            ResourceManager.instance.CanAfford(RealmManager.instance.GetNextRealmCost())
+            && RealmManager.instance.GetCurrentRealmLevel() >= RealmManager.instance.GetNextRealmLevelRequirement()
+        );
+        buyText.enabled = canUnlock;
     }
 }

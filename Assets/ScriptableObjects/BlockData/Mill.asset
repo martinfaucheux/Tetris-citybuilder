@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mill
   m_EditorClassIdentifier: 
   blockName: Mill
-  description: Produces 2 food for each nearby fields
+  description: Produces <sprite name="Food"> 2 for each nearby fields
   cost:
     gold: 5
     food: 0

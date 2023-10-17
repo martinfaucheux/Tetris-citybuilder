@@ -10,8 +10,7 @@ public class HouseBlock : Block
     public override ResourceGroup GetProduct()
     {
         int peopleValue = ((HouseBlockData)data).peopleAmount;
-        int satisfaction = SatisfactionManager.instance.GetSatisfaction(position);
-        return new ResourceGroup(people: peopleValue + satisfaction);
+        return new ResourceGroup(people: peopleValue + GetLevel());
     }
 
     public override ResourceGroup GetPermanentProduct() => (
@@ -22,7 +21,19 @@ public class HouseBlock : Block
     {
         string description = base.GetDescription();
         int satisfaction = GetSatisfaction();
-        if (satisfaction != 0) description += $"Satisfaction: {satisfaction}\n";
+        int level = GetLevel();
+        int nextLevelReq = GetSatisfactionForLevel(level + 1) - satisfaction;
+        description += $"Level: <sprite name=\"Star\"> {level}\n";
+        description += $"Satisfaction: <sprite name=\"Heart\"> {satisfaction}\n";
+        description += $"Next level: <sprite name=\"Heart\"> {nextLevelReq}";
         return description;
     }
+
+    public int GetLevel() => GetLevel(GetSatisfaction());
+
+    public static int GetLevel(int satisfaction) => Mathf.FloorToInt(
+        0.5f * (1 + Mathf.Sqrt(1 + 8 * satisfaction))
+    );
+
+    public static int GetSatisfactionForLevel(int level) => level * (level - 1) / 2;
 }

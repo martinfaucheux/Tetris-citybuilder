@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   blockName: Tree
-  description: 
+  description: Provides <sprite name="Heart"> 1 + 3 if there is no structure above
   cost:
     gold: 3
     food: 0
