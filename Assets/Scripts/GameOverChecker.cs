@@ -9,13 +9,12 @@ public class GameOverChecker : MonoBehaviour
     {
         if (
             ResourceManager.instance.GetUpkeep().gold <= 0
-            && !CanAffordAnyCard()
+            && !DeckManager.instance.CanAffordAny()
         )
+        {
             // game over when there is no gold upkeep and no card can be played
+            Debug.Log("Game over");
             StateManager.SetState(GameState.GAMEOVER);
+        }
     }
-
-    private bool CanAffordAnyCard() => DeckManager.instance.allCards.Any(
-        card => ResourceManager.instance.CanAfford(card.cost)
-    );
 }

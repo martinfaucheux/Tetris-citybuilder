@@ -77,7 +77,7 @@ public class DeckManager : Singleton<DeckManager>
         onDeckChanged?.Invoke();
     }
 
-    public bool CanAffordAny() => drawCards.Any(card => ResourceManager.instance.CanAfford(card.cost));
+    public bool CanAffordAny() => allCards.Any(card => ResourceManager.instance.CanAfford(card.GetCost()));
 
     public Card GetFirstHandCard() => handCards.Any() ? handCards[0] : null;
 }

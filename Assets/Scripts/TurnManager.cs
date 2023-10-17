@@ -8,9 +8,9 @@ public class TurnManager : Singleton<TurnManager>
 {
     [field: SerializeField]
     public int turnCount { get; private set; } = 0;
-
     public UnityEvent onTurnStart;
     public UnityEvent onNewPlayerAction;
+    public List<Card> playedCards = new List<Card>();
 
     void Start()
     {

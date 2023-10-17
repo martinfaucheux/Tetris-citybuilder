@@ -47,8 +47,10 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             Block block = currentContext.grid[contextPosition];
             staticResources += block.GetProduct();
-            staticResources -= block.GetCost();
         }
+        foreach (Card card in TurnManager.instance.playedCards)
+            // cost is computed from cards to take the discount into account
+            staticResources -= card.GetCost();
     }
 
     public ResourceGroup GetUpkeep() => (

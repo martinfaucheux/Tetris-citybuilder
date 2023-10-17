@@ -32,6 +32,6 @@ public class CardHolder : MonoBehaviour
         blockGroupObject.transform.localScale = Vector3.one;
         blockGroup.SetBlockHolderState(BlockHolderState.CARD);
 
-        costText.text = card.cost.ToStringIcon(splitter: '\n');
+        costText.text = card.GetCost().ToStringIcon(splitter: '\n');
     }
 }
