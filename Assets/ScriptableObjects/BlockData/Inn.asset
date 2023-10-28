@@ -18,7 +18,7 @@ MonoBehaviour:
     Provide <sprite name="Heart">
     2 to nearby houses'
   cost:
-    gold: 10
+    gold: 8
     food: 2
     people: 1
   rarity: 3

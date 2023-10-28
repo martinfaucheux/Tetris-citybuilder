@@ -5036,6 +5036,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playedCards: []
 --- !u!114 &1440337147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5133,6 +5134,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b97063e89d2b7d3468a4349dabcbacf4, type: 2}
   - {fileID: 11400000, guid: 75fa294000a4674418f50c914e858d85, type: 2}
   - {fileID: 11400000, guid: 75fa294000a4674418f50c914e858d85, type: 2}
+  - {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
   - {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
   - {fileID: 11400000, guid: 9385165101e955a42a2b1f5c08366a31, type: 2}
   handCards: []

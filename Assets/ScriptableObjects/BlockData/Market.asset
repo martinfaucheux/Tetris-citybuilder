@@ -15,7 +15,7 @@ MonoBehaviour:
   blockName: Market
   description: Yield <sprite name="Gold"> 3 per day
   cost:
-    gold: 10
+    gold: 8
     food: 1
     people: 1
   rarity: 3
